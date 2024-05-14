@@ -1,12 +1,13 @@
 import React from 'react';
 import useLogin from '../Hooks/useLogin';
-import useLoginStore from '../store/store';
-import LoginModal from './Modal/LoginModal';
+import ErrorModal from './Modal/ErrorModal';
+import { useNavigate } from 'react-router-dom';
+import useUserStore from '../store/store';
 
 const LoginPage = () => {
-    // custom hook 호출
-    const { userId, setUserId, password, setPassword } = useLoginStore(); // 로그인 스토어 (전역으로 사용될 수 있는 변수들은 스토어에서 정의)
-    const { error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅(로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
+    const { userId, setUserId, password, setPassword } = useUserStore(); // 로그인 스토어 (전역으로 사용될 수 있는 변수들은 스토어에서 정의)
+    const { error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅 (로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -33,10 +34,10 @@ const LoginPage = () => {
                 <div style={{ display: 'flex', width: '60%' }}> {/* 로그인 버튼과 회원가입 버튼을 같은 행에 배치 */}
                     <button onClick={ () => handleLogin(userId, password) } style={{width: '40%'}}>로그인</button>
                     <div style={{width: '20%'}}></div>
-                    <button style={{width: '40%'}}>회원가입</button>
+                    <button onClick ={() => navigate('/SignPage')} style={{width: '40%'}}>회원가입</button>
                 </div>
             </div>
-            <LoginModal show={showPopup} onClose={closePopup} errorMessage={error} />
+            <ErrorModal text={'로그인 실패'} show={showPopup} onClose={closePopup} errorMessage={error} />
         </div>
     );
 };

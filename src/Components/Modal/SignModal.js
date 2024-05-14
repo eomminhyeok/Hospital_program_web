@@ -1,7 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 
-const LoginModal = ({ show, onClose, errorMessage }) => {
+const SignModal = ({ text, show, onClose, message }) => {
+  const navigate = useNavigate();
   const customStyles = {
     content: {
       width: '30%', // 모달의 너비를 조정합니다.
@@ -14,13 +16,18 @@ const LoginModal = ({ show, onClose, errorMessage }) => {
     }
   };
 
+  const handleConfirm = () => {
+    onClose(); // 모달 닫기
+    navigate('/'); // 로그인 페이지로 이동
+  };
+
   return (
     <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
-      <h2>로그인 오류</h2>
-      <p style={{ color: 'red' }}>{errorMessage}</p>
-      <button onClick={onClose}>닫기</button>
+      <h2>{text}</h2>
+      <p style={{ color: 'gray' }}>{message}</p>
+      <button onClick={handleConfirm}>확인</button>
     </Modal>
   );
 };
 
-export default LoginModal;
+export default SignModal;
