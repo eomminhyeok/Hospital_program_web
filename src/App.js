@@ -1,18 +1,24 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import LoginPage from './Components/LoginPage';
-import DashBoard from './Components/DashBoard';
-import SignPage from './Components/SignPage';
+import LoginPage from './Components/Page/LoginPage';
+import DashBoard from './Components/Page/DashBoard';
+import SignPage from './Components/Page/SignPage';
+import ReservationPage from './Components/Page/ReservationPage';
+import PatientPage from './Components/Page/PatientPage';
+import StatisticsPage from './Components/Page/StatisticsPage';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />}></Route>
-          <Route path="/DashBoard" element={<DashBoard />}></Route>
-          <Route path='/SignPage' element={<SignPage />}></Route>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/DashBoard" element={<DashBoard />} />
+          <Route path='/SignPage' element={<SignPage />} />
+          <Route path='/ReservationPage' element={<ReservationPage/>} />
+          <Route path='/PatientPage' element={<PatientPage/>} />
+          <Route path='/StatisticsPage' element={<StatisticsPage/>} />
         </Routes>
       </BrowserRouter>
     </div>

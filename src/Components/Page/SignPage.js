@@ -1,11 +1,10 @@
 import React from 'react';
-import useSign from '../Hooks/useSign';
-import ErrorModal from './Modal/ErrorModal';
-import SignModal from './Modal/SignModal';
+import useSign from '../../Hooks/useSign';
+import ErrorModal from '../Modal/ErrorModal';
+import SignModal from '../Modal/SignModal';
 
-const SignPage = () => {
-    const { userId, setUserId, password, setPassword, email, setEmail, address, setAddress, phone, setPhone,
-         handleSign, error, showPopup, confirmPopup, closePopup} = useSign();
+const SignPage = () => {const { userId, setUserId, password, setPassword, email, setEmail, address, setAddress, phone, setPhone,
+         handleSign, showPopup, confirmPopup, closePopup} = useSign();
     return(
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20vh' }}>
             <div style={{
@@ -33,7 +32,7 @@ const SignPage = () => {
                 <br />
                     <button onClick={ () => handleSign() } style={{width: 'fit-content'}}>회원가입</button>
             </div>
-            <ErrorModal text={'회원가입 실패'} show={showPopup} onClose={closePopup} errorMessage={error}/>
+            <ErrorModal text={'회원가입 실패'} show={showPopup} onClose={closePopup} message={"입력되지 않은 항목이 있습니다."}/>
             <SignModal text={'회원가입 성공'} show={confirmPopup} onClose={closePopup} message={'로그인 페이지로 돌아갑니다'}/>
         </div>
     );

@@ -6,7 +6,6 @@ const useSign = () => { // 회원가입시 입력 정보를 저장할 커스텀 
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
-    const [error, setError] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [confirmPopup, setConfirmPopup] = useState(false);
 
@@ -14,7 +13,6 @@ const useSign = () => { // 회원가입시 입력 정보를 저장할 커스텀 
         if (userId && password && email && address && phone) {  // 모든 항목은 null 이 아니여야 함
             setConfirmPopup(true);
         } else {
-            setError('입력되지 않은 항목이 있습니다.');
             setShowPopup(true);
         }
     };
@@ -30,7 +28,6 @@ const useSign = () => { // 회원가입시 입력 정보를 저장할 커스텀 
         email, setEmail,
         address, setAddress,
         phone, setPhone,
-        error,
         handleSign,
         showPopup,
         confirmPopup,

@@ -1,12 +1,10 @@
 import React from 'react';
-import useLogin from '../Hooks/useLogin';
-import ErrorModal from './Modal/ErrorModal';
+import useLogin from '../../Hooks/useLogin';
+import ErrorModal from '../Modal/ErrorModal';
 import { useNavigate } from 'react-router-dom';
-import useUserStore from '../store/store';
 
 const LoginPage = () => {
-    const { userId, setUserId, password, setPassword } = useUserStore(); // 로그인 스토어 (전역으로 사용될 수 있는 변수들은 스토어에서 정의)
-    const { error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅 (로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
+    const { useId, setUseId, usePassword, setUsePassword, error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅 (로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
     const navigate = useNavigate();
 
     return (
@@ -27,12 +25,12 @@ const LoginPage = () => {
                 margin: 'auto auto', // 가운데 정렬을 위한 margin 설정
             }}>
                 <h1>로그인</h1>
-                <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} placeholder="아이디" />
+                <input type="text" value={useId} onChange={(e) => setUseId(e.target.value)} placeholder="아이디" />
                 <br />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
+                <input type="password" value={usePassword} onChange={(e) => setUsePassword(e.target.value)} placeholder="비밀번호" />
                 <br />
                 <div style={{ display: 'flex', width: '60%' }}> {/* 로그인 버튼과 회원가입 버튼을 같은 행에 배치 */}
-                    <button onClick={ () => handleLogin(userId, password) } style={{width: '40%'}}>로그인</button>
+                    <button onClick={ () => handleLogin(useId, usePassword) } style={{width: '40%'}}>로그인</button>
                     <div style={{width: '20%'}}></div>
                     <button onClick ={() => navigate('/SignPage')} style={{width: '40%'}}>회원가입</button>
                 </div>

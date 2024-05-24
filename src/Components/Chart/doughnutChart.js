@@ -19,7 +19,7 @@ const centerTextPlugin = { // 차트 가운데 표시할 텍스트 플러그인 
             ctx.textBaseline = 'middle'; // 텍스트 세로기준 중앙 정렬
             const centerX = (left + right) / 2; // x좌표(좌우 기준 중앙)
             const centerY = (top + bottom) / 2 - height * 0.1; // y좌표(중앙에서 살짝 아래)
-            ctx.fillText(text, centerX, centerY); // 텍스트 좌표 설ㅈ렁
+            ctx.fillText(text, centerX, centerY); // 텍스트 좌표 설정
             ctx.restore();
         }
     },

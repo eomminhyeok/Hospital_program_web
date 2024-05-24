@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { verticalLine, tableStyle, tdStyle, thStyle, buttonStyle } from '../styles/style';
-import DoughnutChart from './Chart/doughnutChart';
+import { tableStyle, tdStyle, thStyle, longButton } from '../../styles/style';
+import DoughnutChart from '../Chart/doughnutChart';
+import TopBar from '../ToolBar/TopBar';
 
 const DashBoard = () => {
-    const vertical = verticalLine('4vh');  // 탑 바 수직선 길이
 
     const [reservations, setReservations] = useState([   // 예약자 명단 ui 테스트 값
         { id: 1, name: '박오이', time: '08:30' },
@@ -52,22 +52,21 @@ const DashBoard = () => {
                 key={item.id}
                 onClick={() => isReservation ? handleReservationClick(item) : handleRegistrationClick(item)}
                 style={{
-                    backgroundColor: (isReservation ? selectedReservation?.id : selectedRegistration?.id) === item.id ? '#333333' : 'white',
-                    color: (isReservation ? selectedReservation?.id : selectedRegistration?.id) === item.id ? 'white' : 'black',
+                    backgroundColor: (isReservation ? selectedReservation?.id : selectedRegistration?.id) === item.id ? 'yellow' : 'white',
                     cursor: 'pointer',
                 }}
             >
                 {/* isReservation 값에 따라 td 스타일을 다르게 적용 */}
                 {isReservation ? ( 
                     <>  {/* 예약자 명단은 예약자 이름과 예약 시간을 나타낸다 */}
-                        <td style={{ ...tdStyle, color: 'black' }}>{item.name}</td>
-                        <td style={{ ...tdStyle, color: 'black' }}>{item.time}</td>
+                        <td style={{ ...tdStyle,}}>{item.name}</td>
+                        <td style={{ ...tdStyle,}}>{item.time}</td>
                     </>
                     ) 
                     : 
                     (
                     <>  {/* 접수자 명단은 접수자 이름과 현재 진료중인지 대기중인지를 나타낸다 */}
-                        <td style={{ ...tdStyle, color: 'black' }}>{item.name}</td>
+                        <td style={{ ...tdStyle, }}>{item.name}</td>
                         <td style={{ ...tdStyle, color: data.indexOf(item) === 0 ? 'red' : 'black' }}>{data.indexOf(item) === 0 ? '진료중' : '대기중'}</td>
                     </>
                 )}
@@ -89,25 +88,11 @@ const DashBoard = () => {
     /* ----------------------------------------------- UI ------------------------------------------------ */
 
     return (
-        <div style={{ background: 'linear-gradient(to bottom, rgb(160, 210, 255), #ffffff)', height: '30vh' }}>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left', padding: '2vh 2vw' }}>
-                <h1 style={{ fontSize: '1.8rem' }}>병원관리 시스템</h1>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', flexGrow: 1, fontSize: '1.5rem' }}>
-                    <div style={vertical}></div>
-                    <p>예약관리</p>
-                    <div style={vertical}></div>
-                    <p>환자관리</p>
-                    <div style={vertical}></div>
-                    <p>병원통계</p>
-                    <div style={vertical}></div>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <p style={{ fontSize: '1rem', marginRight: '1vw' }}>사용자: 이름</p>
-                    <button style={{ height: '3vh', marginTop: '2.1vh' }}>로그아웃</button>
-                </div>
-            </div>
-            <hr />
-            {/* 여기서부터 탑 바 아랫부분 */}
+        <div>
+            <TopBar/>
+
+            {/* 탑 바 아래*/}
+
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', padding: '2vw' }}>
                 <div style={{ width: '25%', textAlign: 'center' }}>
                     {/* 예약자 명단 테이블 */}
@@ -126,7 +111,7 @@ const DashBoard = () => {
                         </table>
                     </div>
                     <button onClick={handleRegisterClick} disabled={!selectedReservation} style={{
-                        ...buttonStyle,
+                        ...longButton,
                         color: selectedReservation ? 'black' : 'gray',
                         borderColor: selectedReservation ? 'black' : 'gray'
                     }}>접수</button>
@@ -148,7 +133,7 @@ const DashBoard = () => {
                         </table>
                     </div>
                     <button onClick={handleDeleteClick} disabled={!selectedRegistration} style={{
-                        ...buttonStyle,
+                        ...longButton,
                         color: selectedRegistration ? 'black' : 'gray',
                         borderColor: selectedRegistration ? 'black' : 'gray'
                     }}>삭제</button>

@@ -32,9 +32,25 @@ export const thStyle = {
     borderRadius: '0.5vw',
 };
 
-export const buttonStyle = {
+export const longButton = { // long button
     marginTop: '1vh',
     width: '100%',
+    height: '4vh',
+    backgroundColor: 'white',
+    border: '0.1vw solid #333333', // 변경된 부분
+    color: 'solid gray',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '1vw',
+    cursor: 'pointer',
+    borderRadius: '0.5vw',  // 덜 둥근 모서리
+    transitionDuration: '0.4s',
+    fontFamily: 'Arial, sans-serif',
+};
+
+export const shortButton = { // shortButton button
+    width: '15%',
     height: '4vh',
     backgroundColor: 'white',
     border: '0.1vw solid #333333', // 변경된 부분
