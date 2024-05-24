@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useUserStore from '../store/store';
+import { useUserStore } from '../store/store';
 
 const useLogin = () => {
   const { userId, setUserId, password, setPassword } = useUserStore(); // 로그인 스토어 (전역으로 사용될 수 있는 변수들은 스토어에서 정의)
