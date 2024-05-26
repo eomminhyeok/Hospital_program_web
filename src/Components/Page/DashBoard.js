@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { tableStyle, tdStyle, thStyle, longButton } from '../../styles/style';
+import { tableStyle, tdStyle, thStyle, buttonStyle } from '../../styles/style';
 import DoughnutChart from '../Chart/doughnutChart';
 import TopBar from '../ToolBar/TopBar';
 
@@ -111,7 +111,7 @@ const DashBoard = () => {
                         </table>
                     </div>
                     <button onClick={handleRegisterClick} disabled={!selectedReservation} style={{
-                        ...longButton,
+                        ...buttonStyle, width: '100%', height: '4vh', borderRadius: '0.3vw',
                         color: selectedReservation ? 'black' : 'gray',
                         borderColor: selectedReservation ? 'black' : 'gray'
                     }}>접수</button>
@@ -133,7 +133,7 @@ const DashBoard = () => {
                         </table>
                     </div>
                     <button onClick={handleDeleteClick} disabled={!selectedRegistration} style={{
-                        ...longButton,
+                        ...buttonStyle, width: '100%', height: '4vh', borderRadius: '0.3vw',
                         color: selectedRegistration ? 'black' : 'gray',
                         borderColor: selectedRegistration ? 'black' : 'gray'
                     }}>삭제</button>

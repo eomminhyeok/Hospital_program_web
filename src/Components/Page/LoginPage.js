@@ -29,10 +29,10 @@ const LoginPage = () => {
                 <br />
                 <input type="password" value={usePassword} onChange={(e) => setUsePassword(e.target.value)} placeholder="비밀번호" />
                 <br />
-                <div style={{ display: 'flex', width: '60%' }}> {/* 로그인 버튼과 회원가입 버튼을 같은 행에 배치 */}
-                    <button onClick={ () => handleLogin(useId, usePassword) } style={{width: '40%'}}>로그인</button>
+                <div style={{ display: 'flex', width: '60%', justifyContent: 'center' }}> {/* 로그인 버튼과 회원가입 버튼을 같은 행에 배치 */}
+                    <button onClick={ () => handleLogin() } style={{width: '30%', height: '3vh'}}>로그인</button>
                     <div style={{width: '20%'}}></div>
-                    <button onClick ={() => navigate('/SignPage')} style={{width: '40%'}}>회원가입</button>
+                    <button onClick ={() => navigate('/SignPage')} style={{width: '40%', height: '3vh'}}>회원가입</button>
                 </div>
             </div>
             <ErrorModal text={'로그인 실패'} show={showPopup} onClose={closePopup} errorMessage={error} />

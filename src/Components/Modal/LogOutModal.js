@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
-import { shortButton } from '../../styles/style';
+import { buttonStyle } from '../../styles/style';
 
 const LogOutModal = ({ text, show, onClose, message }) => {
   const navigate = useNavigate();
@@ -22,14 +22,14 @@ const LogOutModal = ({ text, show, onClose, message }) => {
     }
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = () => { // 확인 버튼 이벤트
     sessionStorage.clear();
     localStorage.clear();
     onClose(); // 모달 닫기
     navigate('/'); // 로그인 페이지로 이동
   };
 
-  const handleReject = () =>{ // 취소
+  const handleReject = () =>{ // 취소 버튼
     onClose();
   }
 
@@ -37,8 +37,8 @@ const LogOutModal = ({ text, show, onClose, message }) => {
     <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
       <h2>{text}</h2>
       <p style={{ color: 'gray' }}>{message}</p>
-      <button onClick={handleConfirm} style={{...shortButton, marginRight: '3vw'}}>확인</button>
-      <button onClick={handleReject} style={{...shortButton}}>취소</button>
+      <button onClick={handleConfirm} style={{...buttonStyle, marginRight: '3vw'}}>확인</button>
+      <button onClick={handleReject} style={{...buttonStyle}}>취소</button>
     </Modal>
   );
 };

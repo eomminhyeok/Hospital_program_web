@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { verticalLine } from '../../styles/style';
+import { verticalLine } from '../verticalLine/verticalLine';
 import LogOutModal from '../Modal/LogOutModal';
 
 const vertical = verticalLine('4vh');
@@ -28,7 +28,7 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ background: 'linear-gradient(to bottom, rgb(160, 210, 255), #ffffff)', height: '20vh' }}>
+    <div style={{ background: 'linear-gradient(to bottom, rgb(160, 210, 255), #ffffff)', height: '20vh', width: '100%'}}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left', padding: '2vh 2vw' }}>
         <h1 onClick={() => navigate('/Dashboard')} style={{ fontSize: '1.8rem', cursor: 'pointer' }}>병원관리 시스템</h1>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', flexGrow: 1, fontSize: '1.5rem' }}>
