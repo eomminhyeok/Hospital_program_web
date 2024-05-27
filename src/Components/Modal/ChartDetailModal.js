@@ -1,8 +1,7 @@
 import Modal from 'react-modal';
 
-const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel }) => {
-    // 4.PatientPage에서 받아온 formData와 이벤트 핸들러 사용.
-    // 즉, 진료등록을 할 때 해당 환자의 기본 정보를 불러와야 하는데, 그 흐름은 PatientPage->useChartRegi->PatientPage->ChartRegiModal 순서가 됨.
+const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
+
     const modalStyle = {
         content: {
             width: '50%',
@@ -20,46 +19,57 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel })
     };
 
     const textArrayStyle = {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: '5vh',
+            display: 'flex',
+            flexDirection: 'row',
+            marginBottom: '5vh',
     };
 
     return (
         <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
-            <h1 style={{ display: 'flex', justifyContent: 'center' }}> &lt;진료등록&gt; </h1>  {/* &lt; = '<', $gt; = '>' 표현 */}
-            <hr style={{ marginBottom: '5vh' }}></hr>
+            <h1 style={{display: 'flex', justifyContent: 'center'}}> &lt;진료기록&gt; </h1>  {/* &lt; = '<', $gt; = '>' 표현 */}
+            <hr style={{marginBottom:'5vh'}}></hr>
             <div>
-                <div style={textArrayStyle}>
-                    <p style={{ margin: '0 1vw 0 0' }}>환자번호 :</p>
+            <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>진료번호 :</p>
+                    <input
+                        type="text"
+                        name="chartNum"
+                        value={formData.chartNum}
+                        onChange={handleChange}
+                        style={{height: '2vh'}}
+                        disabled
+                    />
+                </div>
+            <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>환자번호 :</p>
                     <input
                         type="text"
                         name="patientNum"
                         value={formData.patientNum}
                         onChange={handleChange}
-                        style={{ height: '2vh' }}
+                        style={{height: '2vh'}}
                         disabled
                     />
                 </div>
                 <div style={textArrayStyle}>
-                    <p style={{ margin: '0 1vw 0 0' }}>이 름 :</p>
+                    <p style={{margin: '0 1vw 0 0'}}>이 름 :</p>
                     <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        style={{ height: '2vh' }}
+                        style={{height: '2vh'}}
                         disabled
                     />
                 </div>
                 <div style={textArrayStyle}>
-                    <p style={{ margin: '0 1vw 0 0' }}>주민등록번호 :</p>
+                    <p style={{margin: '0 1vw 0 0'}}>주민등록번호 :</p>
                     <input
                         type="text"
                         name="frontRRN"
                         value={formData.frontRRN}
                         onChange={handleChange}
-                        style={{ height: '2vh', width: '6vw' }}
+                        style={{height: '2vh', width: '6vw'}}
                         disabled
                     />
                     -
@@ -68,30 +78,30 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel })
                         name="backRRN"
                         value={formData.backRRN}
                         onChange={handleChange}
-                        style={{ height: '2vh', width: '6vw' }}
+                        style={{height: '2vh', width: '6vw'}}
                         disabled
                     />
                 </div>
                 <div style={textArrayStyle}>
-                    <p style={{ margin: '0 1vw 0 0' }}>진료날짜 :</p>
+                    <p style={{margin: '0 1vw 0 0'}}>진료날짜 :</p>
                     <input
                         type="text"
                         name="chartDate"
                         value={formData.chartDate}
                         onChange={handleChange}
-                        style={{ height: '2vh' }}
+                        style={{height: '2vh'}}
                         disabled
                     />
                 </div>
 
                 <div style={textArrayStyle}>
-                    <p style={{ margin: '0 1vw 0 0' }}>진단명 :</p>
+                    <p style={{margin: '0 1vw 0 0'}}>진단명 :</p>
                     <input
                         type="text"
                         name="diagnosis"
                         value={formData.diagnosis}
                         onChange={handleChange}
-                        style={{ height: '2vh' }}
+                        style={{height: '2vh'}}
                     />
                 </div>
 
@@ -105,9 +115,8 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel })
                     />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3vh' }}>
-                    <button type="submit" style={{ marginRight: '10vw', width: '15vw', height: '3.5vh' }}>확인</button>
-                    <button type="button" style={{ width: '15vw', height: '3.5vh' }} onClick={() => { handleCancel(); onClose(); }}>취소</button>
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '3vh'}}>
+                    <button onClick={()=>onClose()} style={{width:'15vw', height: '3.5vh'}}>확인</button>
                 </div>
 
             </div>
@@ -115,4 +124,4 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel })
     );
 };
 
-export default ChartRegiModal;
+export default ChartDetailModal;

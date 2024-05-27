@@ -4,14 +4,17 @@ import { tableStyle, thStyle} from '../../styles/style';
 import { patientStore } from '../../store/store';
 import RegistrationModal from '../Modal/RegistrationModal';
 import ChartRegiModal from '../Modal/ChartRegiModal';
+import ChartListModal from '../Modal/ChartListModal';
 import useChartRegi from '../../Hooks/useChartRegi';
 import useRegistration from '../../Hooks/useRegistration';
+import useChartList from '../../Hooks/useChartList';
 
 
 const PatientPage = () => {
     const { useName, setUseName} = usePatient();  // 환자 이름 저장
-    const { showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop} = useRegistration();
-    const { showPopup: showChartPop, handlePopup: handleChartPop, closePopup: closeChartPop, formData, handleChange, handleCancel} = useChartRegi();
+    const { showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop} = useRegistration(); // 환자등록 훅
+    const { showPopup: showChartPop, handlePopup: handleChartPop, closePopup: closeChartPop, formData, handleChange, handleCancel} = useChartRegi(); // 진료등록 훅
+    const { showPopup: showListPop, closePopup: closeListPop, getPatientNum} = useChartList();
     const { patientList } = patientStore();
 
     return (
@@ -36,7 +39,7 @@ const PatientPage = () => {
                             <th style={thStyle}>주 소</th>
                             <th style={thStyle}>휴대폰번호</th>
                             <th style={thStyle}>진료기록</th>
-                            <th style={thStyle}>등 록</th>
+                            <th style={thStyle}>진료등록</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,8 +52,8 @@ const PatientPage = () => {
                                 <td style={{border : '1px solid #ccc'}}>{patient.sex}</td>
                                 <td style={{border : '1px solid #ccc'}}>{patient.address}</td>
                                 <td style={{border : '1px solid #ccc'}}>{patient.phone}</td>
-                                <td style={{border : '1px solid #ccc'}}><button>진료기록</button></td>
-                                <td style={{border : '1px solid #ccc'}}><button onClick={() => handleChartPop(patient)}>진료등록</button></td>
+                                <td style={{border : '1px solid #ccc'}}><button onClick={() => getPatientNum(patient.patientNum)}>상세보기</button></td>
+                                <td style={{border : '1px solid #ccc'}}><button onClick={() => handleChartPop(patient)}>등 록</button></td>
                                 {/* 1.useChartRegi의 handleChartPop으로 해당 행의 환자정보를 전송 */}
                             </tr>
                         ))}
@@ -60,6 +63,7 @@ const PatientPage = () => {
             <RegistrationModal show={ showPatientPop } onClose={closePatientPop}></RegistrationModal>
             <ChartRegiModal show={ showChartPop } onClose={closeChartPop} formData={formData} // 3.useChartRegi의 formData와 핸들러들을 Modal로 전달
              handleChange={handleChange} handleCancel={handleCancel}></ChartRegiModal>
+            <ChartListModal show={showListPop} onClose={closeListPop}></ChartListModal>
         </div>
     )
 };

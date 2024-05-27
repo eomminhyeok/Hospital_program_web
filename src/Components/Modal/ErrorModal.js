@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 
 const ErrorModal = ({ text, show, onClose, message}) => {
-  const customStyles = {
+  const modalStyle = {
     content: {
       width: '30%',
       height: 'fit-content', 
@@ -15,7 +15,7 @@ const ErrorModal = ({ text, show, onClose, message}) => {
   };
 
   return (
-    <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
       <h2>{text}</h2>
       <p style={{ color: 'red' }}>{message}</p>
       <button onClick={onClose}>확인</button>

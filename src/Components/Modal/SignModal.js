@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignModal = ({ text, show, onClose, message }) => {
   const navigate = useNavigate();
-  const customStyles = {
+  const modalStyle = {
     content: {
       width: '30%', 
       height: 'fit-content',
@@ -22,7 +22,7 @@ const SignModal = ({ text, show, onClose, message }) => {
   };
 
   return (
-    <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
       <h2>{text}</h2>
       <p style={{ color: 'gray' }}>{message}</p>
       <button onClick={handleConfirm}>확인</button>

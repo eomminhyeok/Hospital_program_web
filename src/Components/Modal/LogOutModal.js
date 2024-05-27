@@ -6,7 +6,7 @@ import { buttonStyle } from '../../styles/style';
 const LogOutModal = ({ text, show, onClose, message }) => {
   const navigate = useNavigate();
 
-  const customStyles = { // 모달 스타일
+  const modalStyle = { // 모달 스타일
     content: {
       width: '30%',
       height: 'fit-content', 
@@ -34,7 +34,7 @@ const LogOutModal = ({ text, show, onClose, message }) => {
   }
 
   return (
-    <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
       <h2>{text}</h2>
       <p style={{ color: 'gray' }}>{message}</p>
       <button onClick={handleConfirm} style={{...buttonStyle, marginRight: '3vw'}}>확인</button>

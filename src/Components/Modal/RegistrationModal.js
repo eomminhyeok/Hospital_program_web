@@ -5,7 +5,7 @@ import useRegistration from '../../Hooks/useRegistration';
 const RegistrationModal = ({ show, onClose }) => {
   const { formData, handleChange, handleCancel } = useRegistration();
 
-  const customStyles = { // 모달 스타일
+  const modalStyle = { // 모달 스타일
     content: {
       width: '30%',
       height: 'fit-content',
@@ -31,7 +31,7 @@ const RegistrationModal = ({ show, onClose }) => {
   }
 
   return (
-    <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
+    <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
       <h2 style={{textAlign: 'center'}}>신규환자 등록</h2>
 
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2vh 1vw'}}>

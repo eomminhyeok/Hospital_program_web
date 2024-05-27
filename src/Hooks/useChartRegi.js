@@ -3,9 +3,10 @@ import currentDateTime from '../Components/etc/dateTime';
 
 const useChartRegi = () => {
   const [formData, setFormData] = useState({
-    chartName: '',
-    chartFront: '',
-    chartBack: '',
+    patientNum: '',
+    name: '',
+    frontRRN: '',
+    backRRN: '',
     chartDate: '',
     diagnosis: '',
     notes: '',
@@ -20,9 +21,10 @@ const useChartRegi = () => {
 
   const handleCancel = () => {
     setFormData({
-      chartName: '',
-      chartFront: '',
-      chartBack: '',
+      patienttNum: '',
+      name: '',
+      frontRRN: '',
+      backRRN: '',
       chartDate: '',
       diagnosis: '',
       notes: '',
@@ -32,9 +34,10 @@ const useChartRegi = () => {
 
   const handlePopup = (patient) => {  // 2.환자리스트에서 선택한 환자 해당 행의 정보를 받아와 formData에 저장
     setFormData({     // 진료 등록시 이름과 주민등록번호, 진료날짜는 입력할 필요가 없음
-      chartName: patient.name,
-      chartFront: patient.frontRRN,
-      chartBack: patient.backRRN,
+      patientNum: patient.patientNum,
+      name: patient.name,
+      frontRRN: patient.frontRRN,
+      backRRN: patient.backRRN,
       chartDate: currentDateTime(), // 현재 날짜+시간
       diagnosis: '',
       notes: '',

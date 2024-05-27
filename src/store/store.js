@@ -66,39 +66,36 @@ export const chartStore = create((set) => ({
   chartList: [
     {
       chartNum: '1',
-      chartName: '홍길동',
-      chartFront: '123456',
-      chartBack: '7890',
+      patientNum: '001',
+      name: '홍길동',
+      frontRRN: '123456',
+      backRRN: '7890',
       chartDate: '2024-05-26',
       diagnosis: '감기',
       notes: '약 처방함',
     },
     {
       chartNum: '2',
-      chartName: '김영희',
-      chartFront: '987654',
-      chartBack: '3210',
-      chartDate: '2024-05-25',
-      diagnosis: '소화불량',
-      notes: '식이요법 시행함',
+      patientNum: '001',
+      name: '홍길동',
+      frontRRN: '123456',
+      backRRN: '7890',
+      chartDate: '2024-02-30',
+      diagnosis: '꾀병',
+      notes: '학교 가기 싫어함',
+    },
+    {
+      chartNum: '3',
+      patientNum: '001',
+      name: '홍길동',
+      frontRRN: '123456',
+      backRRN: '7890',
+      chartDate: '2024-01-26',
+      diagnosis: '복통',
+      notes: '설사 많이함. 물 적게 마실 것',
     },
   ],
   setChartList: (chartList) => set({ chartList })
-  /* 진료기록도 환자정보와 마찬가지로 서버에서 진료정보를 받아올 리스트만 있으면 됨 */
-  // chartNum: '',  // 차트 번호
-  // setChartNum: (chartNum) => set({ chartNum }),
-  // chartName: '',   // 환자 이름
-  // setChartName: (chartName) => set({ chartName }),
-  // chartFront: '',  // 주민번호 앞자리
-  // setChartFront: (chartFront) => set({ chartFront }),
-  // chartBack: '',  // 주민번호 뒷자리
-  // setChartBack: (chartBack) => set({ chartBack }),
-  // chartDate: '',  // 진료 날짜
-  // setChartDate: (chartDate) => set({ chartDate }),
-  // diagnosis: '',  // 진단명
-  // setDiagnosis: (diagnosis) => set({ diagnosis }),
-  // notes: '',  // 진료 내용
-  // setNotes: (notes) => set({ notes }),
 }));
 
 
