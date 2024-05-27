@@ -1,20 +1,48 @@
 import { useState } from "react";
 
 const useRegistration = () => {
-    const [ name, setName ] = useState('');
-    const [ frontRRN, setFrontRRN ] = useState('');
-    const [ backRRN, setBackRRN ] = useState('');
-    const [ sex, setSex ] = useState('');
-    const [ address, setAddress ] = useState();
-    const [ phone, setPhone ] = useState();
+    const [formData, setFormData] = useState({
+        name: '',
+        frontRRN: '',
+        backRRN: '',
+        sex: '',
+        address: '',
+        phone: '',
+    });
 
-    return{
-        name, setName,
-        frontRRN, setFrontRRN,
-        backRRN, setBackRRN,
-        sex, setSex,
-        address, setAddress,
-        phone, setPhone,
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleCancel = () => {
+        setFormData({
+            name: '',
+            frontRRN: '',
+            backRRN: '',
+            sex: '',
+            address: '',
+            phone: '',
+        });
+    };
+
+    const handlePopup = () => {
+        setShowPopup(true);
+      };
+    
+      const closePopup = () => {
+        setShowPopup(false);
+      };
+
+    return {
+        formData, setFormData,
+        handleChange,
+        handleCancel,
+        showPopup,
+        handlePopup,
+        closePopup
     };
 };
 

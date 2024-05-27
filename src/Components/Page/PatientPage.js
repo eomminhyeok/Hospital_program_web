@@ -1,17 +1,18 @@
-import TopBar from '../ToolBar/TopBar';
+import TopBar from '../etc/topBar';
 import usePatient from '../../Hooks/usePatient';
 import { tableStyle, thStyle} from '../../styles/style';
 import { patientStore } from '../../store/store';
 import RegistrationModal from '../Modal/RegistrationModal';
 import ChartRegiModal from '../Modal/ChartRegiModal';
 import useChartRegi from '../../Hooks/useChartRegi';
+import useRegistration from '../../Hooks/useRegistration';
 
 
 const PatientPage = () => {
-    const { useName, setUseName, showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop } = usePatient();
-    const { showPopup: showChartPop, handlePopup: handleChartPop, closePopup: closeChartPop} = useChartRegi();
+    const { useName, setUseName} = usePatient();  // 환자 이름 저장
+    const { showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop} = useRegistration();
+    const { showPopup: showChartPop, handlePopup: handleChartPop, closePopup: closeChartPop, formData, handleChange, handleCancel} = useChartRegi();
     const { patientList } = patientStore();
-    
 
     return (
         <div>
@@ -49,14 +50,16 @@ const PatientPage = () => {
                                 <td style={{border : '1px solid #ccc'}}>{patient.address}</td>
                                 <td style={{border : '1px solid #ccc'}}>{patient.phone}</td>
                                 <td style={{border : '1px solid #ccc'}}><button>진료기록</button></td>
-                                <td style={{border : '1px solid #ccc'}}><button onClick={handleChartPop}>진료등록</button></td>
+                                <td style={{border : '1px solid #ccc'}}><button onClick={() => handleChartPop(patient)}>진료등록</button></td>
+                                {/* 1.useChartRegi의 handleChartPop으로 해당 행의 환자정보를 전송 */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
             <RegistrationModal show={ showPatientPop } onClose={closePatientPop}></RegistrationModal>
-            <ChartRegiModal show={ showChartPop } onClose={closeChartPop}></ChartRegiModal>
+            <ChartRegiModal show={ showChartPop } onClose={closeChartPop} formData={formData} // 3.useChartRegi의 formData와 핸들러들을 Modal로 전달
+             handleChange={handleChange} handleCancel={handleCancel}></ChartRegiModal>
         </div>
     )
 };

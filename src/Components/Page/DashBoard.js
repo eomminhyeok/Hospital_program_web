@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { tableStyle, tdStyle, thStyle, buttonStyle } from '../../styles/style';
-import DoughnutChart from '../Chart/doughnutChart';
-import TopBar from '../ToolBar/TopBar';
+import DoughnutChart from '../etc/doughnutChart';
+import TopBar from '../etc/topBar';
 
 const DashBoard = () => {
 

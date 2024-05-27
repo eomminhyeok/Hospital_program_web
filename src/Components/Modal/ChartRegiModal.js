@@ -1,31 +1,104 @@
-import React from 'react';
 import Modal from 'react-modal';
-import useChartRegi from '../../Hooks/useChartRegi';
 
-const ChartRegiModal = ( {show, onClose }) => {
-    const { chartName, setChartName, chartFront, setChartFront, chartBack, setChartBack, 
-        chartDate, setChartDate, diagnosis, setDiagnosis, notes, setNotes, } = useChartRegi();
-
-    const customStyles = { // 모달 스타일
+const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel }) => {
+    // 4.PatientPage에서 받아온 formData와 이벤트 핸들러 사용.
+    // 즉, 진료등록을 할 때 해당 환자의 기본 정보를 불러와야 하는데, 그 흐름은 PatientPage->useChartRegi->PatientPage->ChartRegiModal 순서가 됨.
+    const customStyles = {
         content: {
-          width: '30%',
-          height: 'fit-content',
-          top: '50%', // 모달이 화면 상단에서 50% 위치
-          left: '50%', // 모달이 화면 왼쪽에서 50% 위치
-          transform: 'translate(-50%, -50%)', // 모달을 수평 및 수직으로 정확히 가운데로 이동
-          padding: '20px',
-          textAlign: 'center',
-          zIndex: 1000 // z-index를 설정하여 모달이 최상위에 위치
+            width: '70%',
+            height: '80%',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            padding: '3vh 7vw 3vh 7vw',
+            textAlign: 'left',
+            zIndex: 1000,
         },
         overlay: {
-          zIndex: 1000 // content와 overlay 두 영역 모두에서 최상위에 위치하게 하여 모든 요소에서 최상위에 위치하도록 보장
-        }
-      };
+            zIndex: 1000,
+        },
+    };
 
-    return(
+    const textArrayStyle = {
+            display: 'flex',
+            flexDirection: 'row',
+            marginBottom: '5vh',
+    };
+
+    return (
         <Modal isOpen={show} onRequestClose={onClose} style={customStyles}>
+            <h1 style={{display: 'flex', justifyContent: 'center'}}> &lt;진료등록&gt; </h1>  {/* &lt; = '<', $gt; = '>' 표현 */}
+            <hr style={{marginBottom:'5vh'}}></hr>
             <div>
-                <p>x</p>
+                <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>이 름 :</p>
+                    <input
+                        type="text"
+                        name="chartName"
+                        value={formData.chartName}
+                        onChange={handleChange}
+                        style={{height: '2vh'}}
+                        disabled
+                    />
+                </div>
+                <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>주민등록번호 :</p>
+                    <input
+                        type="text"
+                        name="chartFront"
+                        value={formData.chartFront}
+                        onChange={handleChange}
+                        style={{height: '2vh', width: '6vw'}}
+                        disabled
+                    />
+                    -
+                    <input
+                        type="text"
+                        name="chartBack"
+                        value={formData.chartBack}
+                        onChange={handleChange}
+                        style={{height: '2vh', width: '6vw'}}
+                        disabled
+                    />
+                </div>
+                <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>진료날짜 :</p>
+                    <input
+                        type="text"
+                        name="chartDate"
+                        value={formData.chartDate}
+                        onChange={handleChange}
+                        style={{height: '2vh'}}
+                        disabled
+                    />
+                </div>
+
+                <div style={textArrayStyle}>
+                    <p style={{margin: '0 1vw 0 0'}}>진단명 :</p>
+                    <input
+                        type="text"
+                        name="diagnosis"
+                        value={formData.diagnosis}
+                        onChange={handleChange}
+                        style={{height: '2vh'}}
+                    />
+                </div>
+
+                <div>
+                    <p>진료내용 :</p>
+                    <textarea
+                        name="notes"
+                        value={formData.notes}
+                        onChange={handleChange}
+                        style={{ height: '20vh', width: '50vw' }}
+                    />
+                </div>
+
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '3vh'}}>
+                    <button type="submit" style={{marginRight: '10vw', width:'15vw', height: '3.5vh'}}>확인</button>
+                    <button type="button" style={{width: '15vw', height: '3.5vh'}} onClick={() => { handleCancel(); onClose(); }}>취소</button>
+                </div>
+
             </div>
         </Modal>
     );

@@ -1,23 +1,11 @@
 import { useState } from "react";
 
-const usePatient = () => {
+const usePatient = () => {      // 환자 이름 검색 처리
     const [useName, setUseName] = useState('');   
-    const [showPopup, setShowPopup] = useState(false);
-  
-    const handlePopup = () => {
-      setShowPopup(true);
-    };
-  
-    const closePopup = () => {
-      setShowPopup(false);
-    };
     
     return{
         useName,
         setUseName,
-        handlePopup,
-        showPopup,
-        closePopup
     }
 };
 

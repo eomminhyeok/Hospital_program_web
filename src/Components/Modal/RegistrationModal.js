@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import useRegistration from '../../Hooks/useRegistration';
 
 const RegistrationModal = ({ show, onClose }) => {
-  const { name, setName, frontRRN, setFrontRRN, backRRN, setBackRRN, sex, setSex, address, setAddress, phone, setPhone } = useRegistration();
+  const { formData, handleChange, handleCancel } = useRegistration();
 
   const customStyles = { // 모달 스타일
     content: {
@@ -26,6 +26,7 @@ const RegistrationModal = ({ show, onClose }) => {
   };
 
   const handleReject = () => { // 취소
+    handleCancel();
     onClose();
   }
 
@@ -37,40 +38,40 @@ const RegistrationModal = ({ show, onClose }) => {
 
         <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}> 
           <label style={{marginRight: '6vw'}}>이름</label>
-          <input type={'text'} value={name} onChange={(e) => setName(e.target.value)} style={{ height: '2vh'}} />
+          <input type='text' name='name' value={formData.name} onChange={handleChange} style={{ height: '2vh'}} />
         </div>
 
         <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
           <label style={{marginRight: '6vw'}}>성별</label>
           <div style={{marginRight: '1vw'}}>
             <label>
-              <input type="radio" value="남" checked={sex === '남'} onChange={() => setSex('남')} style={{ marginRight: '0.5vw' }} />
-              남
+              <input type="radio" name='sex' value="남" checked={formData.sex === '남'} onChange={handleChange} style={{ marginRight: '0.5vw' }} />
+              남자
             </label>
           </div>
           <div>
             <label>
-              <input type="radio" value="여" checked={sex === '여'} onChange={() => setSex('여')} style={{ marginRight: '0.5vw' }} />
-              여
+              <input type="radio" name='sex' value="여" checked={formData.sex === '여'} onChange={handleChange} style={{ marginRight: '0.5vw' }} />
+              여자
             </label>
           </div>
         </div>
 
         <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
           <label style={{marginRight: '2.2vw'}}>주민등록번호</label>
-          <input type={'text'} value={frontRRN} onChange={(e) => setFrontRRN(e.target.value)} style={{ width:'5vw', height: '2vh', marginRight: '0.5vw'}} />
+          <input type='text' name='frontRRN' value={formData.frontRRN} onChange={handleChange} style={{ width:'5vw', height: '2vh', marginRight: '0.5vw'}} />
           <span>-</span>
-          <input type={'text'} value={backRRN} onChange={(e) => setBackRRN(e.target.value)} style={{ width:'5vw', height: '2vh', marginLeft: '0.5vw'}} />
+          <input type='text' name='backRRN' value={formData.backRRN} onChange={handleChange} style={{ width:'5vw', height: '2vh', marginLeft: '0.5vw'}} />
         </div>
 
         <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
           <label style={{marginRight: '6vw'}}>주소</label>
-          <input type={'text'} value={address} onChange={(e) => setAddress(e.target.value)} style={{ height: '2vh'}} />
+          <input type='text' name='address' value={formData.address} onChange={handleChange} style={{ height: '2vh'}} />
         </div>
 
         <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
           <label style={{marginRight: '3vw'}}>휴대폰번호</label>
-          <input type={'text'} value={phone} onChange={(e) => setPhone(e.target.value)} style={{ height: '2vh'}} />
+          <input type='text' name='phone' value={formData.phone} onChange={handleChange} style={{ height: '2vh'}} />
         </div>
 
 

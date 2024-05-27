@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { verticalLine } from '../verticalLine/verticalLine';
+import { verticalLine } from './verticalLine';
 import LogOutModal from '../Modal/LogOutModal';
 
 const vertical = verticalLine('4vh');

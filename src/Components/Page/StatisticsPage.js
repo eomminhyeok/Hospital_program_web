@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBar from '../ToolBar/TopBar';
+import TopBar from '../etc/topBar';
 
 const StatisticsPage = () => {
     return(
