@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useRegistration = () => {
+const useAddPatient = () => {
     const [formData, setFormData] = useState({
         name: '',
         frontRRN: '',
@@ -46,4 +46,4 @@ const useRegistration = () => {
     };
 };
 
-export default useRegistration;
+export default useAddPatient;

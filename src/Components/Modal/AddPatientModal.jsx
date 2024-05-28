@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
-import useRegistration from '../../Hooks/useRegistration';
+import useAddPatient from '../../Hooks/useAddPatient';
 
-const RegistrationModal = ({ show, onClose }) => {
-  const { formData, handleChange, handleCancel } = useRegistration();
+const AddPatientModal = ({ show, onClose }) => {
+  const { formData, handleChange, handleCancel } = useAddPatient();
 
   const modalStyle = { // 모달 스타일
     content: {
@@ -84,8 +84,6 @@ const RegistrationModal = ({ show, onClose }) => {
 
     </Modal>
   );
-  
-
 };
 
-export default RegistrationModal;
+export default AddPatientModal;

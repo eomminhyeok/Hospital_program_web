@@ -2,17 +2,17 @@ import TopBar from '../etc/topBar';
 import usePatient from '../../Hooks/usePatient';
 import { tableStyle, thStyle} from '../../styles/style';
 import { patientStore } from '../../store/store';
-import RegistrationModal from '../Modal/RegistrationModal';
+import RegistrationModal from '../Modal/AddPatientModal';
 import ChartRegiModal from '../Modal/ChartRegiModal';
 import ChartListModal from '../Modal/ChartListModal';
 import useChartRegi from '../../Hooks/useChartRegi';
-import useRegistration from '../../Hooks/useRegistration';
+import useAddPatient from '../../Hooks/useAddPatient';
 import useChartList from '../../Hooks/useChartList';
 
 
 const PatientPage = () => {
-    const { useName, setUseName} = usePatient();  // 환자 이름 저장
-    const { showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop} = useRegistration(); // 환자등록 훅
+    const { searchName, setSearchName} = usePatient();  // 검색한 환자 이름 변수
+    const { showPopup: showPatientPop, handlePopup: handlePatientPop, closePopup:closePatientPop} = useAddPatient(); // 환자등록 훅
     const { showPopup: showChartPop, handlePopup: handleChartPop, closePopup: closeChartPop, formData, handleChange, handleCancel} = useChartRegi(); // 진료등록 훅
     const { showPopup: showListPop, closePopup: closeListPop, getPatientNum} = useChartList();
     const { patientList } = patientStore();
@@ -22,7 +22,7 @@ const PatientPage = () => {
             <TopBar />
             <div style={{ display: 'flex', flexDirection: 'row', width: 'auto', height: '5vh', padding: '1vh 2vw 1vh 2vw' }}>
                 <h2 style={{ margin: '0 1vw 0 0' }}>환자 검색</h2>
-                <input type='text' value={useName} onChange={(e) => setUseName(e.target.value)}
+                <input type='text' value={searchName} onChange={(e) => setSearchName(e.target.value)}
                     style={{ height: '3vh', width: '10vw', fontSize: '1rem', marginRight: '1vw' }} placeholder="이름을 입력하세요"></input>
                 <button style={{ height: '4vh', width: '4vw' }}>검색</button>
                 <button  onClick={ handlePatientPop } style={{ height: '4vh', width: '6vw', marginLeft: 'auto' }}>환자등록</button>

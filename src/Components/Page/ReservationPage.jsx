@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TopBar from '../etc/topBar';
 import { tableStyle, thStyle } from '../../styles/style';
 import { reservationStore } from '../../store/store';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
+import AddResModal from '../Modal/AddResModal';
+import useAddRes from '../../Hooks/useAddRes';
+import useReservation from '../../Hooks/useReservation';
+
 
 const ReservationPage = () => {
     const { reservationList } = reservationStore();
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const { showPopup, handlePopup, closePopup } = useAddRes();
+    const { selectedDate, setSelectedDate } = useReservation();
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
 
     const timeSlot = [
@@ -17,11 +22,15 @@ const ReservationPage = () => {
         '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'
     ];
 
+    // 현재 날짜를 가져오고, 그 이전의 날짜를 비활성화하기 위해 minDate 변수 설정
+    const currentDate = new Date();
+    const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 1);
+
     return (
         <div>
             <TopBar />
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
-                <h2>&lt;{formattedDate}&gt;</h2>
+            <div style={{ display: 'flex', alignItems: 'center'}}>
+                <h2 style={{margin:'0 32vw 0 28vw'}}>&lt;{formattedDate}&gt;</h2>
                 <h2>&lt;Calendar&gt;</h2>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
@@ -39,15 +48,15 @@ const ReservationPage = () => {
                                 <tr key={index}>
                                     <td style={{ border: '1px solid #ccc' }}>{time}</td>
                                     <td style={{ border: '1px solid #ccc' }}>
-                                        {reservationList
-                                            .filter(reservation => reservation.DateTime.includes(time))
+                                        {reservationList    // 해당 시간에 예약한 예약자를 판별
+                                            .filter(reservation => reservation.dateTime.includes(time))
                                             .map((reservation, i) => (
                                                 i === 0 ? <div key={i}>{reservation.name}</div> : null
                                             ))}
                                     </td>
                                     <td style={{ border: '1px solid #ccc' }}>
                                         {reservationList
-                                            .filter(reservation => reservation.DateTime.includes(time))
+                                            .filter(reservation => reservation.dateTime.includes(time))
                                             .map((reservation, i) => (
                                                 i === 1 ? <div key={i}>{reservation.name}</div> : null
                                             ))}
@@ -57,20 +66,20 @@ const ReservationPage = () => {
                         </tbody>
                     </table>
                     <div style={{ display: 'flex', width: '100%', margin: '1vh 0' }}>
-                        <button style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>추가</button>
+                        <button onClick={handlePopup} style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>추가</button>
                         <button style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>삭제</button>
                     </div>
                 </div>
-                <div style={{ width: '40%', height: '80%' }}>
-                    <DatePicker
+                <div style={{ width: '20%', height: '10%' }}>
+                <DatePicker
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date)}
-                        inline  // 이 부분이 누락되어 있었습니다.
-                        style={{ width: '1%', height: '1%' }}
-
-                    />
+                        inline 
+                        minDate={minDate}
+                    />  {/*날짜를 선택하면 해당 날짜가 selectedDate에 저장. */}
                 </div>
             </div>
+            <AddResModal show={showPopup} onClose={closePopup}></AddResModal>
         </div>
     );
 };
