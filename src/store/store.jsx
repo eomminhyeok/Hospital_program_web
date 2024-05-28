@@ -103,14 +103,49 @@ export const chartStore = create((set) => ({
 
 // 예약 정보
 export const reservationStore = create((set) => ({
-  resList: [],
-  setResList: (resList) => set({ resList })
-  // resNum: '',  // 예약 번호
-  // setResNum: (resNum) => set({ resNum }),
-  // resName: '',  // 예약자 이름
-  // setResName: (resName) => set({ resName }),
-  // resFornt: '',  // 예약자 생년월일
-  // setResFornt: (resFornt) => set({ resFornt }),
-  // resDate: '',  // 예약 날짜
-  // setResDate: (resDate) => set({ resDate }),
+  reservationList: [
+    {
+      reservationNum: '1',
+      name: '김철수',
+      frontRRN: '910101',
+      backRRN: '1423123',
+      DateTime: '2024-06-01T09:00', // 09:00 예약
+    },
+    {
+      reservationNum: '2',
+      name: '이영희',
+      frontRRN: '880202',
+      backRRN: '1234567',
+      DateTime: '2024-06-01T09:30', // 09:30 예약
+    },
+    {
+      reservationNum: '3',
+      name: '박민수',
+      frontRRN: '950303',
+      backRRN: '9876543',
+      DateTime: '2024-06-01T10:00', // 10:00 예약
+    },
+    {
+      reservationNum: '4',
+      name: '주사과',
+      frontRRN: '910101',
+      backRRN: '1423123',
+      DateTime: '2024-06-01T09:00', // 09:00 예약
+    },
+    {
+      reservationNum: '5',
+      name: '김수박',
+      frontRRN: '880202',
+      backRRN: '1234567',
+      DateTime: '2024-06-01T010:00', // 09:30 예약
+    },
+    {
+      reservationNum: '6',
+      name: '박포도',
+      frontRRN: '950303',
+      backRRN: '9876543',
+      DateTime: '2024-06-01T11:00', // 10:00 예약
+    },
+  ],
+  setResList: (resList) => set({ resList }),
 }));

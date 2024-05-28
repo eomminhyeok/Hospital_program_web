@@ -27,7 +27,7 @@ const PatientPage = () => {
                 <button style={{ height: '4vh', width: '4vw' }}>검색</button>
                 <button  onClick={ handlePatientPop } style={{ height: '4vh', width: '6vw', marginLeft: 'auto' }}>환자등록</button>
             </div>
-            <div style={{ maxHeight: '50vh', overflowY: 'scroll', backgroundColor: 'solid #ccc' }}>
+            <div style={{ maxHeight: '65vh', overflowY: 'scroll', backgroundColor: 'solid #ccc' }}>
                 <table style={{ ...tableStyle, borderCollapse: 'collapse', backgroundColor: 'white'}}>
                     <thead> 
                         <tr>

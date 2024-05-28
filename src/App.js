@@ -7,6 +7,7 @@ import SignPage from './Components/Page/SignPage';
 import ReservationPage from './Components/Page/ReservationPage';
 import PatientPage from './Components/Page/PatientPage';
 import StatisticsPage from './Components/Page/StatisticsPage';
+import TestPage from './TestPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/ReservationPage' element={<ReservationPage/>} />
           <Route path='/PatientPage' element={<PatientPage/>} />
           <Route path='/StatisticsPage' element={<StatisticsPage/>} />
+          <Route path='/TestPage' element={<TestPage/>} />
         </Routes>
       </BrowserRouter>
     </div>
