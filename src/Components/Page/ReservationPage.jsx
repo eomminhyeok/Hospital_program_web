@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 import AddResModal from '../Modal/AddResModal';
 import useAddRes from '../../Hooks/useAddRes';
 import useReservation from '../../Hooks/useReservation';
+import useCancleRes from '../../Hooks/useCancleRes';
+import CancleResModal from '../Modal/CancleResModal';
 
 
 const ReservationPage = () => {
@@ -15,6 +17,7 @@ const ReservationPage = () => {
     const { showPopup, handlePopup, closePopup } = useAddRes();
     const { selectedDate, setSelectedDate } = useReservation();
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+    const { showPopup:showPopup2, handlePopup:handlePopup2, closePopup:closePopup2} = useCancleRes();
 
     const timeSlot = [
         '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
@@ -24,7 +27,7 @@ const ReservationPage = () => {
 
     // 현재 날짜를 가져오고, 그 이전의 날짜를 비활성화하기 위해 minDate 변수 설정
     const currentDate = new Date();
-    const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 1);
+    const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
     return (
         <div>
@@ -66,8 +69,8 @@ const ReservationPage = () => {
                         </tbody>
                     </table>
                     <div style={{ display: 'flex', width: '100%', margin: '1vh 0' }}>
-                        <button onClick={handlePopup} style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>추가</button>
-                        <button style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>삭제</button>
+                        <button onClick={handlePopup} style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>예약 등록</button>
+                        <button onClick={handlePopup2} style={{ flexGrow: 1, height: '4vh', margin: '0 0.5vw' }}>예약 조회(삭제)</button>
                     </div>
                 </div>
                 <div style={{ width: '20%', height: '10%' }}>
@@ -80,6 +83,7 @@ const ReservationPage = () => {
                 </div>
             </div>
             <AddResModal show={showPopup} onClose={closePopup}></AddResModal>
+            <CancleResModal show={showPopup2} onClose={closePopup2}></CancleResModal>
         </div>
     );
 };

@@ -1,3 +1,5 @@
+// 예약등록 최종 모달
+
 import React from 'react';
 import Modal from 'react-modal';
 import DatePicker from 'react-datepicker';
@@ -38,7 +40,7 @@ const ConfirmResModal = ({show, onClose, patientInfo}) => {
 
   // 현재 날짜를 가져오고, 그 이전의 날짜를 비활성화하기 위해 minDate 변수 설정
   const currentDate = new Date();
-  const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 1);
+  const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
   const selectBoxStyles = {  // select box 스타일 커스텀
     control: (provided) => ({
