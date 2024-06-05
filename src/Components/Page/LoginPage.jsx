@@ -1,10 +1,12 @@
+// 로그인 페이지
+
 import React from 'react';
 import useLogin from '../../Hooks/useLogin';
 import ErrorModal from '../Modal/ErrorModal';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    const { useId, setUseId, usePassword, setUsePassword, error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅 (로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
+    const { id, setId, password, setPassword, error, showPopup, closePopup, handleLogin } = useLogin(); // 로그인 훅 (로그인 관련 에러메세지와 팝업창은 로그인페이지에서만 사용하기 때문에 훅에 정의)
     const navigate = useNavigate();
 
     return (
@@ -25,9 +27,9 @@ const LoginPage = () => {
                 margin: 'auto auto', // 가운데 정렬을 위한 margin 설정
             }}>
                 <h1>로그인</h1>
-                <input type="text" value={useId} onChange={(e) => setUseId(e.target.value)} placeholder="아이디" />
+                <input type="text" value={id} onChange={(e) => setId(e.target.value)} placeholder="아이디" />
                 <br />
-                <input type="password" value={usePassword} onChange={(e) => setUsePassword(e.target.value)} placeholder="비밀번호" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호" />
                 <br />
                 <div style={{ display: 'flex', width: '60%', justifyContent: 'center' }}> {/* 로그인 버튼과 회원가입 버튼을 같은 행에 배치 */}
                     <button onClick={ () => handleLogin() } style={{width: '30%', height: '3vh'}}>로그인</button>
@@ -35,7 +37,7 @@ const LoginPage = () => {
                     <button onClick ={() => navigate('/SignPage')} style={{width: '40%', height: '3vh'}}>회원가입</button>
                 </div>
             </div>
-            <ErrorModal text={'로그인 실패'} show={showPopup} onClose={closePopup} errorMessage={error} />
+            <ErrorModal text={'로그인 실패'} show={showPopup} onClose={closePopup} message={error} />
         </div>
     );
 };

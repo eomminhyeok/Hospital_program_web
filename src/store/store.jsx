@@ -4,18 +4,16 @@ import { create } from 'zustand';
 
 // 프로그램 사용자 정보
 export const useUserStore = create((set) => ({
-  userId: '', // 사용자 id
-  setUserId: (userId) => set({ userId }),
-  userName: '',
-  setUserName: (userName) => set({ userName }),
-  // password: '', // 비밀번호
-  // setPassword: (password) => set({ password }),
-  // email: '',
-  // setEmail: (email) => set({ email }),
-  // address: '',
-  // setAddress: (address) => set({address}),
-  // phone: '',
-  // setPhone: (phone) => set({phone}),
+  userInfo:
+    {
+      userId: '', // 사용자 id
+      userName: '',
+      password: '', // 비밀번호
+      email: '',
+      address: '',
+      phone: '',
+    },
+  setUserInfo: (userInfo) => set({ userInfo })
 }));
 
 
@@ -25,33 +23,14 @@ export const useUserStore = create((set) => ({
 export const patientStore = create((set) => ({
   patientList: [    // 테스트 값
     {
-      patientNum: '001',
-      name: '홍길동',
-      frontRRN: '910101',
-      backRRN: '1234567',
-      sex: '남',
-      address: '서울특별시',
-      phone: '010-1234-5678'
+      patientNum: '',
+      name: '',
+      frontRRN: '',
+      backRRN: '',
+      sex: '',
+      address: '',
+      phone: ''
     },
-    {
-      patientNum: '002',
-      name: '김영희',
-      frontRRN: '950202',
-      backRRN: '2345678',
-      sex: '여',
-      address: '부산광역시',
-      phone: '010-9876-5432'
-    },
-    // 추가 데이터
-    ...Array.from({ length: 30 }, (_, index) => ({
-      patientNum: `00${index + 3}`,
-      name: `테스트${index + 1}`,
-      frontRRN: `${index + 910101}`,
-      backRRN: `${index + 1234567}`,
-      sex: index % 2 === 0 ? '남' : '여',
-      address: index % 2 === 0 ? '서울특별시' : '부산광역시',
-      phone: `010-${index + 1234}-${index + 5678}`
-    }))
   ],
   setPatientList: (patientList) => set({ patientList })
 }));

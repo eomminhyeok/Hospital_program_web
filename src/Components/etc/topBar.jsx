@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { verticalLine } from './verticalLine';
 import LogOutModal from '../Modal/LogOutModal';
+import { useUserStore } from '../../store/store';
 
 const vertical = verticalLine('4vh');
 
@@ -25,6 +26,7 @@ const usePopup = () => {
 
 const TopBar = () => {
   const { showPopup, handlePopup, closePopup } = usePopup();
+  const { userInfo } = useUserStore();
   const navigate = useNavigate();
 
   return (
@@ -41,7 +43,7 @@ const TopBar = () => {
           <div style={vertical}></div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <p style={{ fontSize: '1rem', marginRight: '1vw' }}>사용자: 이름</p>
+          <p style={{ fontSize: '1rem', marginRight: '1vw' }}>사용자: {userInfo.userName}</p>
           <button onClick={handlePopup} style={{height: '3.2vh',marginTop: '2.1vh' }}>로그아웃</button>
         </div>
       </div>

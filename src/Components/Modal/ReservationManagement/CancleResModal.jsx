@@ -1,9 +1,10 @@
+// 예약 관리 페이지의 예약조회(취소) 버튼 이벤트 모달
 import React from 'react';
 import Modal from 'react-modal';
-import useCancleConfirm from '../../Hooks/useCancleConfirm';
-import useCancleRes from '../../Hooks/useCancleRes';
-import { reservationStore } from '../../store/store';
-import { thStyle, tableStyle } from '../../styles/style';
+import useCancleConfirm from '../../../Hooks/ReservationManagement/useCancleConfirm';
+import useCancleRes from '../../../Hooks/ReservationManagement/useCancleRes';
+import { reservationStore } from '../../../store/store';
+import { thStyle, tableStyle } from '../../../styles/style';
 import CancleConfirmModal from './CancleConfirmModal';
 
 const CancleResModal = ({ show, onClose }) => {

@@ -1,3 +1,4 @@
+// 로그아웃 모달
 import React from 'react';
 import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';

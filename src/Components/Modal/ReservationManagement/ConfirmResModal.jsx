@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
-import useConfirmRes from '../../Hooks/useConfirmRes';
+import useConfirmRes from '../../../Hooks/ReservationManagement/useConfirmRes';
 
 const ConfirmResModal = ({show, onClose, patientInfo}) => {
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime} = useConfirmRes();

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import currentDateTime from '../Components/etc/dateTime';
+import currentDateTime from '../../Components/etc/dateTime';
 
 const useChartRegi = () => {
   const [formData, setFormData] = useState({

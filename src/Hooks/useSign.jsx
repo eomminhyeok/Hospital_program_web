@@ -1,19 +1,31 @@
 import { useState } from 'react';
+import { SignService } from '../Services/apiSign';
 
-const useSign = () => { // 회원가입시 입력 정보를 저장할 커스텀 훅
-    const [userId, setUserId] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
-    const [phone, setPhone] = useState('');
+const useSign = () => {
+    const [userInfo, setUserInfo] = useState({
+        userid: '',
+        password: '',
+        name: '',
+        email: '',
+        address: '',
+        phone: '',
+    });
+
     const [showPopup, setShowPopup] = useState(false);
     const [confirmPopup, setConfirmPopup] = useState(false);
 
-    const handleSign = () => {
-        if (userId && password && email && address && phone) {  // 모든 항목은 null 이 아니여야 함
-            setConfirmPopup(true);
+    const handleSign = async () => {
+        if (userInfo.userid && userInfo.password && userInfo.name && userInfo.email && userInfo.address && userInfo.phone) {  
+            try {
+                const response = await SignService(userInfo); // 회원가입 서비스 함수 호출 후 응답 저장
+                console.log('Sign up response:', response);
+                setConfirmPopup(true); // 회원가입 성공
+            } catch (error) {
+                console.error('회원가입 에러:', error);
+                setShowPopup(true); // 회원가입 실패
+            }
         } else {
-            setShowPopup(true);
+            setShowPopup(true); // 입력되지 않은 항목이 있을 때 알림
         }
     };
 
@@ -23,11 +35,7 @@ const useSign = () => { // 회원가입시 입력 정보를 저장할 커스텀 
     };
 
     return {
-        userId, setUserId,
-        password, setPassword,
-        email, setEmail,
-        address, setAddress,
-        phone, setPhone,
+        userInfo, setUserInfo,
         handleSign,
         showPopup,
         confirmPopup,

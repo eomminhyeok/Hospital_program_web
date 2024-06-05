@@ -1,3 +1,4 @@
+// 대쉬보드 페이지
 import React, { useState } from 'react';
 import { tableStyle, tdStyle, thStyle, buttonStyle } from '../../styles/style';
 import DoughnutChart from '../etc/doughnutChart';

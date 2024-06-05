@@ -1,9 +1,10 @@
+// 예약 관리 페이지의 예약추가 버튼 이벤트 모달
 import React from 'react';
 import Modal from 'react-modal';
-import useAddRes from '../../Hooks/useAddRes';
-import useConfirmRes from '../../Hooks/useConfirmRes';
-import { patientStore } from '../../store/store';
-import { thStyle, tableStyle } from '../../styles/style'; 
+import useAddRes from '../../../Hooks/ReservationManagement/useAddRes';
+import useConfirmRes from '../../../Hooks/ReservationManagement/useConfirmRes';
+import { patientStore } from '../../../store/store';
+import { thStyle, tableStyle } from '../../../styles/style'; 
 import ConfirmResModal from './ConfirmResModal';
 
 const AddResModal = ({show, onClose}) => {

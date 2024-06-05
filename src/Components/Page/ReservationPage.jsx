@@ -1,3 +1,4 @@
+// 예약 관리 페이지
 import React from 'react';
 import TopBar from '../etc/topBar';
 import { tableStyle, thStyle } from '../../styles/style';
@@ -5,11 +6,11 @@ import { reservationStore } from '../../store/store';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
-import AddResModal from '../Modal/AddResModal';
-import useAddRes from '../../Hooks/useAddRes';
-import useReservation from '../../Hooks/useReservation';
-import useCancleRes from '../../Hooks/useCancleRes';
-import CancleResModal from '../Modal/CancleResModal';
+import AddResModal from '../Modal/ReservationManagement/AddResModal';
+import useAddRes from '../../Hooks/ReservationManagement/useAddRes';
+import useReservation from '../../Hooks/ReservationManagement/useReservation';
+import useCancleRes from '../../Hooks/ReservationManagement/useCancleRes';
+import CancleResModal from '../Modal/ReservationManagement/CancleResModal';
 
 
 const ReservationPage = () => {

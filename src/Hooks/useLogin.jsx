@@ -1,32 +1,43 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoginService } from '../Services/apiLogin';
+import { useUserStore } from '../store/store';
 
 const useLogin = () => {
-  const [ useId, setUseId ] = useState('');
-  const [ usePassword, setUsePassword ] = useState('');
+  const [ id, setId ] = useState('');
+  const [ password, setPassword ] = useState('');
   const [ error, setError ] = useState('');
   const [ showPopup, setShowPopup ] = useState(false);
+  const { userInfo } = useUserStore();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (useId === '1' && usePassword === '1') { // 로그인 성공
-      console.log('로그인 성공');
-      navigate('/DashBoard'); // 대쉬보드 페이지로 이동
-    } else {
-      setError('아이디 또는 비밀번호가 잘못되었습니다. 다시 시도하세요.'); // 에러 메세지
-      setShowPopup(true); // 팝업 창 true
+  const handleLogin = async () => {
+    try {
+      const response = await LoginService(id, password);
+      // 서버로부터 받은 응답의 상태 코드 확인
+      if (response.status === 200) {
+        // 상태 코드가 200이면 대쉬보드 페이지로 이동
+        userInfo.userName = response.data;
+        navigate('/DashBoard');
+      } 
+    } catch (error) {
+      console.error('로그인 에러:', error);
+      setError('아이디 또는 비밀번호가 잘못되었습니다. 다시 시도하세요.');
+      setShowPopup(true);
     }
   };
 
+
+  
   const closePopup = () => {
     setShowPopup(false);
   };
 
   return {
-    useId,
-    setUseId,
-    usePassword,
-    setUsePassword,
+    id,
+    setId,
+    password,
+    setPassword,
     error,
     handleLogin,
     showPopup,

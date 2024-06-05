@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { chartStore } from '../store/store';
+import { chartStore } from '../../store/store';
 
 const useChartDetail = () => {
   const [formData, setFormData] = useState({

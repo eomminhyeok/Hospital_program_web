@@ -1,9 +1,9 @@
-// 진료기록 상세보기
+// 진료기록에서 상세보기 모달
 import React from 'react';
 import Modal from 'react-modal';
-import useChartDetail from '../../Hooks/useChartDetail';
-import { chartStore } from '../../store/store';
-import { tableStyle, thStyle } from '../../styles/style';
+import useChartDetail from '../../../Hooks/PatientManagement/useChartDetail';
+import { chartStore } from '../../../store/store';
+import { tableStyle, thStyle } from '../../../styles/style';
 import ChartDetailModal from './ChartDetailModal';
 
 const ChartListModal = ({ show, onClose }) => {
