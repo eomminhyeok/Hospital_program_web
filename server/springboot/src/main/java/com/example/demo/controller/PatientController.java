@@ -28,9 +28,9 @@ public class PatientController {
             System.out.println("Phone: " + patient.getPHONE());
             System.out.println("Sex: " + patient.getSEX());
             patientService.registration(patient);
-            return ResponseEntity.ok().body("회원가입 성공");
+            return ResponseEntity.ok().body("환자등록 성공");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입 실패: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("환자등록 실패: " + e.getMessage());
         }
     }
 }

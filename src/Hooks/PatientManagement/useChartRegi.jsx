@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import currentDateTime from '../../Components/etc/dateTime';
+import { ChartRegiService } from '../../Services/apiChartRegi';
 
 const useChartRegi = () => {
   const [formData, setFormData] = useState({
+    chartNum: 1,
     patientNum: '',
     name: '',
     frontRRN: '',
@@ -21,7 +23,8 @@ const useChartRegi = () => {
 
   const handleCancel = () => {
     setFormData({
-      patienttNum: '',
+      chartNum: 1,
+      patientNum: '',
       name: '',
       frontRRN: '',
       backRRN: '',
@@ -34,6 +37,7 @@ const useChartRegi = () => {
 
   const handlePopup = (patient) => {  // 2.환자리스트에서 선택한 환자 해당 행의 정보를 받아와 formData에 저장
     setFormData({     // 진료 등록시 이름과 주민등록번호, 진료날짜는 입력할 필요가 없음
+      chartNum: 1,
       patientNum: patient.patientNum,
       name: patient.name,
       frontRRN: patient.frontRRN,
@@ -49,8 +53,33 @@ const useChartRegi = () => {
     setShowPopup(false);
   };
 
+  const apiChartRegi = async (chart) => { // 진료 정보 전달
+    try {
+      const response = await ChartRegiService(chart);
+      if (response.status === 200) {
+        console.log(response.status);
+        console.log('진료등록 성공:');
+        setFormData({
+          patientNum: '',
+          name: '',
+          frontRRN: '',
+          backRRN: '',
+          chartDate: '',
+          diagnosis: '',
+          notes: '',
+        });
+      }
+    } catch (error) {
+      if (error.response) {
+        console.log("에러 상태 코드:", error.response.status);
+      }
+      console.log("진료등록 실패");
+    }
+  }
+
 
   return {
+    apiChartRegi,
     formData,
     handleChange,
     handleCancel,

@@ -38,7 +38,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.chartNum}
                         onChange={handleChange}
                         style={{height: '2vh'}}
-                        disabled
+                        readOnly
                     />
                 </div>
             <div style={textArrayStyle}>
@@ -49,7 +49,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.patientNum}
                         onChange={handleChange}
                         style={{height: '2vh'}}
-                        disabled
+                        readOnly
                     />
                 </div>
                 <div style={textArrayStyle}>
@@ -60,7 +60,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.name}
                         onChange={handleChange}
                         style={{height: '2vh'}}
-                        disabled
+                        readOnly
                     />
                 </div>
                 <div style={textArrayStyle}>
@@ -71,7 +71,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.frontRRN}
                         onChange={handleChange}
                         style={{height: '2vh', width: '6vw'}}
-                        disabled
+                        readOnly
                     />
                     -
                     <input
@@ -80,7 +80,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.backRRN}
                         onChange={handleChange}
                         style={{height: '2vh', width: '6vw'}}
-                        disabled
+                        readOnly
                     />
                 </div>
                 <div style={textArrayStyle}>
@@ -91,7 +91,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.chartDate}
                         onChange={handleChange}
                         style={{height: '2vh'}}
-                        disabled
+                        readOnly
                     />
                 </div>
 
@@ -103,6 +103,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.diagnosis}
                         onChange={handleChange}
                         style={{height: '2vh'}}
+                        readOnly
                     />
                 </div>
 
@@ -113,6 +114,7 @@ const ChartDetailModal = ({ show, onClose, formData, handleChange}) => {
                         value={formData.notes}
                         onChange={handleChange}
                         style={{ height: '20vh', width: '50vw' }}
+                        readOnly
                     />
                 </div>
 

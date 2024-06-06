@@ -1,9 +1,14 @@
 // 환자 관리 -> 진료등록 버튼 이벤트 모달
+import React from 'react';
 import Modal from 'react-modal';
+import useChartRegi from '../../../Hooks/PatientManagement/useChartRegi'
 
-const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel }) => {
+const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel}) => {
     // 4.PatientPage에서 받아온 formData와 이벤트 핸들러 사용.
     // 즉, 진료등록을 할 때 해당 환자의 기본 정보를 불러와야 하는데, 그 흐름은 PatientPage->useChartRegi->PatientPage->ChartRegiModal 순서가 됨.
+
+    const { apiChartRegi } = useChartRegi();
+
     const modalStyle = {
         content: {
             width: '50%',
@@ -107,8 +112,8 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel })
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3vh' }}>
-                    <button type="submit" style={{ marginRight: '10vw', width: '15vw', height: '3.5vh' }}>확인</button>
-                    <button type="button" style={{ width: '15vw', height: '3.5vh' }} onClick={() => { handleCancel(); onClose(); }}>취소</button>
+                    <button onClick={() => { apiChartRegi(formData); onClose(); }} style={{ marginRight: '10vw', width: '15vw', height: '3.5vh' }}>확인</button>
+                    <button onClick={() => { handleCancel(); onClose(); }} style={{ width: '15vw', height: '3.5vh' }}>취소</button>
                 </div>
 
             </div>

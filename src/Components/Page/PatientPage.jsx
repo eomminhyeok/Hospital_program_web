@@ -57,7 +57,7 @@ const PatientPage = () => {
                                 <td style={{border : '1px solid #ccc'}}>{patient.phone}</td>
                                 <td style={{border : '1px solid #ccc'}}><button onClick={() => getPatientNum(patient.patientNum)}>상세보기</button></td>
                                 <td style={{border : '1px solid #ccc'}}><button onClick={() => handleChartPop(patient)}>등 록</button></td>
-                                {/* 1.useChartRegi의 handleChartPop으로 해당 행의 환자정보를 전송 */}
+                                {/* 1.useChartRegi의 handlePopup으로 해당 행의 환자정보를 전송 */}
                             </tr>
                         ))}
                     </tbody>
