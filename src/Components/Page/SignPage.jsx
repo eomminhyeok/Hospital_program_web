@@ -22,7 +22,7 @@ const SignPage = () => {
                 margin: 'auto auto',
             }}>
                 <h1>회원가입</h1>
-                <input type="text" value={userInfo.userid} onChange={(e) => setUserInfo({ ...userInfo, userid: e.target.value })} placeholder="아이디" />
+                <input type="text" value={userInfo.userId} onChange={(e) => setUserInfo({ ...userInfo, userId: e.target.value })} placeholder="아이디" />
                 <br />
                 <input type="password" value={userInfo.password} onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })} placeholder="비밀번호" />
                 <br />

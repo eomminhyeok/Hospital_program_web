@@ -7,7 +7,7 @@ export const useUserStore = create((set) => ({
   userInfo:
     {
       userId: '', // 사용자 id
-      userName: '',
+      name: '',
       password: '', // 비밀번호
       email: '',
       address: '',

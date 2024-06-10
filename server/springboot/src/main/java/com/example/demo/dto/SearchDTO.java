@@ -1,13 +1,13 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
-public class Search {
+public class SearchDTO {
     private String name;
 
     // 생성자, 게터 및 세터
-    public Search() {
+    public SearchDTO() {
     }
 
-    public Search(String name) {
+    public SearchDTO(String name) {
         this.name = name;
     }
 

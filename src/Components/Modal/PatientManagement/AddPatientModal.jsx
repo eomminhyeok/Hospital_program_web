@@ -5,7 +5,7 @@ import useAddPatient from '../../../Hooks/PatientManagement/useAddPatient';
 
 
 const AddPatientModal = ({ show, onClose }) => {
-  const { patient, handleChange, handleCancel, handleRegistration} = useAddPatient();
+  const { patient, handleChange, handleCancel, handleRegistration } = useAddPatient();
 
   const modalStyle = { // 모달 스타일
     content: {
@@ -35,18 +35,18 @@ const AddPatientModal = ({ show, onClose }) => {
 
   return (
     <Modal isOpen={show} onRequestClose={onClose} style={modalStyle}>
-      <h2 style={{textAlign: 'center'}}>신규환자 등록</h2>
+      <h2 style={{ textAlign: 'center' }}>신규환자 등록</h2>
 
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2vh 1vw'}}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2vh 1vw' }}>
 
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}> 
-          <label style={{marginRight: '6vw'}}>이름</label>
-          <input type='text' name='name' value={patient.name} onChange={handleChange} style={{ height: '2vh'}} />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4vh' }}>
+          <label style={{ marginRight: '6vw' }}>이름</label>
+          <input type='text' name='name' value={patient.name} onChange={handleChange} style={{ height: '2vh' }} />
         </div>
 
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
-          <label style={{marginRight: '6vw'}}>성별</label>
-          <div style={{marginRight: '1vw'}}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4vh' }}>
+          <label style={{ marginRight: '6vw' }}>성별</label>
+          <div style={{ marginRight: '1vw' }}>
             <label>
               <input type="radio" name='sex' value="남" checked={patient.sex === '남'} onChange={handleChange} style={{ marginRight: '0.5vw' }} />
               남자
@@ -60,28 +60,28 @@ const AddPatientModal = ({ show, onClose }) => {
           </div>
         </div>
 
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
-          <label style={{marginRight: '2.2vw'}}>주민등록번호</label>
-          <input type='text' name='frontrrn' value={patient.frontrrn} onChange={handleChange} style={{ width:'5vw', height: '2vh', marginRight: '0.5vw'}} />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4vh' }}>
+          <label style={{ marginRight: '2.2vw' }}>주민등록번호</label>
+          <input type='text' name='frontRRN' value={patient.frontRRN} onChange={handleChange} style={{ width: '5vw', height: '2vh', marginRight: '0.5vw' }} />
           <span>-</span>
-          <input type='text' name='backrrn' value={patient.backrrn} onChange={handleChange} style={{ width:'5vw', height: '2vh', marginLeft: '0.5vw'}} />
+          <input type='text' name='backRRN' value={patient.backRRN} onChange={handleChange} style={{ width: '5vw', height: '2vh', marginLeft: '0.5vw' }} />
         </div>
 
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
-          <label style={{marginRight: '6vw'}}>주소</label>
-          <input type='text' name='address' value={patient.address} onChange={handleChange} style={{ height: '2vh'}} />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4vh' }}>
+          <label style={{ marginRight: '6vw' }}>주소</label>
+          <input type='text' name='address' value={patient.address} onChange={handleChange} style={{ height: '2vh' }} />
         </div>
 
-        <div style={{display: 'flex', alignItems: 'center', marginBottom: '4vh'}}>
-          <label style={{marginRight: '3vw'}}>휴대폰번호</label>
-          <input type='text' name='phone' value={patient.phone} onChange={handleChange} style={{ height: '2vh'}} />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4vh' }}>
+          <label style={{ marginRight: '3vw' }}>휴대폰번호</label>
+          <input type='text' name='phone' value={patient.phone} onChange={handleChange} style={{ height: '2vh' }} />
         </div>
 
 
 
       </div>
-      <div style={{textAlign: 'center'}}>
-        <button onClick={() => handleConfirm()} style={{marginRight: '1vw'}}>확인</button>
+      <div style={{ textAlign: 'center' }}>
+        <button onClick={() => handleConfirm()} style={{ marginRight: '1vw' }}>확인</button>
         <button onClick={handleReject}>취소</button>
       </div>
     </Modal>

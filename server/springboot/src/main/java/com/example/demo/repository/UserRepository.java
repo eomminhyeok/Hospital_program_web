@@ -6,6 +6,6 @@ import com.example.demo.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-	User findByUSERID(String id);
+	User findByUserId(String id);
     // 추가적인 메서드가 필요한 경우 여기에 정의
 }

@@ -1,45 +1,21 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class PatientDTO {
 
-@Entity
-@Table(name = "PATIENT")
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PATIENTNUM")
     private Long patientNum;
-    
-    @Column(name = "NAME")
     private String name;
-    
-    @Column(name = "FRONTRRN")
     private String frontRRN;
-    
-    @Column(name = "BACKRRN")
     private String backRRN;
-    
-    @Column(name = "ADDRESS")
     private String address;
-    
-    @Column(name = "PHONE")
     private String phone;
-    
-    @Column(name = "SEX")
     private String sex;
 
     // 기본 생성자
-    public Patient() {
+    public PatientDTO() {
     }
 
     // 모든 필드를 매개변수로 받는 생성자
-    public Patient(Long patientNum, String name, String frontRRN, String backRRN, String address, String phone, String sex) {
+    public PatientDTO(Long patientNum, String name, String frontRRN, String backRRN, String address, String phone, String sex) {
         this.patientNum = patientNum;
         this.name = name;
         this.frontRRN = frontRRN;
@@ -106,4 +82,3 @@ public class Patient {
         this.sex = sex;
     }
 }
-

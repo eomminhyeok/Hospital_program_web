@@ -3,7 +3,7 @@ import { SignService } from '../Services/apiSign';
 
 const useSign = () => {
     const [userInfo, setUserInfo] = useState({
-        userid: '',
+        userId: '',
         password: '',
         name: '',
         email: '',
@@ -15,7 +15,7 @@ const useSign = () => {
     const [confirmPopup, setConfirmPopup] = useState(false);
 
     const handleSign = async () => {
-        if (userInfo.userid && userInfo.password && userInfo.name && userInfo.email && userInfo.address && userInfo.phone) {  
+        if (userInfo.userId && userInfo.password && userInfo.name && userInfo.email && userInfo.address && userInfo.phone) {  
             try {
                 const response = await SignService(userInfo); // 회원가입 서비스 함수 호출 후 응답 저장
                 console.log('Sign up response:', response);

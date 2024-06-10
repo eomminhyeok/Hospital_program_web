@@ -3,10 +3,10 @@ import { AddPatientnService } from "../../Services/apiAddPatient";
 
 const useAddPatient = () => {
     const [patient, setPatient] = useState({
-        patientnum: 1, 
+        patientNum: '', 
         name: '',
-        frontrrn: '',
-        backrrn: '',
+        frontRRN: '',
+        backRRN: '',
         sex: '',
         address: '',
         phone: '',
@@ -21,10 +21,10 @@ const useAddPatient = () => {
 
     const handleCancel = () => {
         setPatient({
-            patientnum: 1, // 8자리 고유한 랜덤 숫자 재설정
+            patientNum: '', // 8자리 고유한 랜덤 숫자 재설정
             name: '',
-            frontrrn: '',
-            backrrn: '',
+            frontRRN: '',
+            backRRN: '',
             sex: '',
             address: '',
             phone: '',
@@ -46,10 +46,10 @@ const useAddPatient = () => {
                 console.log(response.status);
                 console.log('환자등록 성공:');
                 setPatient({
-                    patientnum: 1, 
+                    patientNum: 1, 
                     name: '',
-                    frontrrn: '',
-                    backrrn: '',
+                    frontRRN: '',
+                    backRRN: '',
                     sex: '',
                     address: '',
                     phone: '',

@@ -13,22 +13,27 @@ public class User {
 
     @Id
     @Column(name = "USERID")
-    private String USERID;
-    private String PASSWORD;
-    private String NAME;
-    private String EMAIL;
-    private String ADDRESS;
-    private String PHONE;
+    private String userId;
+    @Column(name = "PASSWORD")
+    private String password;
+    @Column(name = "NAME")
+    private String name;
+    @Column(name = "EMAIL")
+    private String email;
+    @Column(name = "ADDRESS")
+    private String address;
+    @Column(name = "PHONE")
+    private String phone;
     
     @Override
     public String toString() {
         return "User{" +
-                "USERID='" + USERID + '\'' +
-                ", PASSWORD='" + PASSWORD + '\'' +
-                ", NAME='" + NAME + '\'' +
-                ", EMAIL='" + EMAIL + '\'' +
-                ", ADDRESS='" + ADDRESS + '\'' +
-                ", PHONE='" + PHONE + '\'' +
+                "USERID='" + userId + '\'' +
+                ", PASSWORD='" + password + '\'' +
+                ", NAME='" + name + '\'' +
+                ", EMAIL='" + email + '\'' +
+                ", ADDRESS='" + address + '\'' +
+                ", PHONE='" + phone + '\'' +
                 '}';
     }
 
@@ -36,61 +41,61 @@ public class User {
     public User() {
     }
 
-    public User(String USERID, String PASSWORD, String NAME, String EMAIL, String ADDRESS, String PHONE) {
-        this.USERID = USERID;
-        this.PASSWORD = PASSWORD;
-        this.NAME = NAME;
-        this.EMAIL = EMAIL;
-        this.ADDRESS = ADDRESS;
-        this.PHONE = PHONE;
+    public User(String userId, String password, String name, String email, String address, String phone) {
+        this.userId = userId;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
     }
 
-    
-    public String getUSERID() {
-        return USERID;
+    // 게터 및 세터
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUSERID(String USERID) {
-        this.USERID = USERID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getPASSWORD() {
-        return PASSWORD;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPASSWORD(String PASSWORD) {
-        this.PASSWORD = PASSWORD;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getADDRESS() {
-        return ADDRESS;
+    public String getAddress() {
+        return address;
     }
 
-    public void setADDRESS(String ADDRESS) {
-        this.ADDRESS = ADDRESS;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPHONE() {
-        return PHONE;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPHONE(String PHONE) {
-        this.PHONE = PHONE;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -43,7 +43,7 @@ const TopBar = () => {
           <div style={vertical}></div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <p style={{ fontSize: '1rem', marginRight: '1vw' }}>사용자: {userInfo.userName}</p>
+          <p style={{ fontSize: '1rem', marginRight: '1vw' }}>사용자: {userInfo.name}</p>
           <button onClick={handlePopup} style={{height: '3.2vh',marginTop: '2.1vh' }}>로그아웃</button>
         </div>
       </div>
