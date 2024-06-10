@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,31 +8,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "PATIENT")
+@Table(name = "PATIENT_VIEW")
 public class PatientView {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PATIENTNUM")
-    private Long patientNum; // 엔티티 클래스에서 필드명은 camelCase를 사용하고, 컬럼명은 대문자 스네이크 케이스를 사용하는 것이 관례입니다.
+    private Long patientNum; //
     
-    @Column(name = "NAME") // 대문자로 표시된 컬럼명은 해당 어노테이션을 사용하여 매핑합니다.
-    private String name; // camelCase를 사용한 엔티티 클래스의 필드명은 그대로 유지합니다.
+    @Column(name = "NAME") // 대문자로 표시된 컬럼명은 해당 어노테이션을 사용하여 매핑
+    private String name; // camelCase를 사용한 엔티티 클래스의 필드명은 그대로 유지
     
     @Column(name = "FRONTRRN")
-    private String frontRRN; // 엔티티 클래스의 필드명은 camelCase를 사용합니다.
+    private String frontRRN; // 엔티티 클래스의 필드명은 camelCase를 사용
     
     @Column(name = "BACKRRN")
-    private String backRRN; // 엔티티 클래스의 필드명은 camelCase를 사용합니다.
+    private String backRRN; 
     
     @Column(name = "ADDRESS")
-    private String address; // 엔티티 클래스의 필드명은 camelCase를 사용합니다.
+    private String address; 
     
     @Column(name = "PHONE")
-    private String phone; // 엔티티 클래스의 필드명은 camelCase를 사용합니다.
+    private String phone; 
     
     @Column(name = "SEX")
-    private String sex; // 엔티티 클래스의 필드명은 camelCase를 사용합니다.
+    private String sex;
     
     @Override
     public String toString() {

@@ -15,6 +15,7 @@ import java.util.List;
 public class SearchController {
     private final SearchService searchService;
 
+    
     @Autowired
     public SearchController(SearchService searchService) {
         this.searchService = searchService;

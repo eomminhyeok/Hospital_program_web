@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CHART")
-public class Chart {
+public class ChartView {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,10 +52,10 @@ public class Chart {
     }
  
     // 생성자
-    public Chart() {
+    public ChartView() {
     }
 
-    public Chart(Long chartNum, Long patientNum, String name, String frontRRN, String backRRN, String chartDate, String diagnosis, String notes) {
+    public ChartView(Long chartNum, Long patientNum, String name, String frontRRN, String backRRN, String chartDate, String diagnosis, String notes) {
         this.chartNum = chartNum;
     	this.patientNum = patientNum;
         this.name = name;
