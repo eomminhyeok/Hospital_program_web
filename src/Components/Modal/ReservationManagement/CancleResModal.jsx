@@ -58,7 +58,7 @@ const CancleResModal = ({ show, onClose }) => {
                 <td style={{ border: '1px solid #ccc' }}>{reservation.name}</td>
                 <td style={{ border: '1px solid #ccc' }}>{reservation.frontRRN}</td>
                 <td style={{ border: '1px solid #ccc' }}>{reservation.backRRN}</td>
-                <td style={{ border: '1px solid #ccc' }}>{formatDateTime(reservation.dateTime)}</td>
+                <td style={{ border: '1px solid #ccc' }}>{formatDateTime(reservation.reservationDate)}</td>
                 <td style={{ border: '1px solid #ccc' }}><button onClick={()=>getReservationNum(reservation.reservationNum)}>예약 취소</button></td>
               </tr>                                        // 예약 취소시 해당 예약의 예약번호 전송
             ))}

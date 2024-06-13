@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SignService } from '../Services/apiSign';
+import { apiSign } from '../Services/apiSign';
 
 const useSign = () => {
     const [userInfo, setUserInfo] = useState({
@@ -17,7 +17,7 @@ const useSign = () => {
     const handleSign = async () => {
         if (userInfo.userId && userInfo.password && userInfo.name && userInfo.email && userInfo.address && userInfo.phone) {  
             try {
-                const response = await SignService(userInfo); // 회원가입 서비스 함수 호출 후 응답 저장
+                const response = await apiSign(userInfo); // 회원가입 서비스 함수 호출 후 응답 저장
                 console.log('Sign up response:', response);
                 setConfirmPopup(true); // 회원가입 성공
             } catch (error) {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginService } from '../Services/apiLogin';
+import { apiLogin } from '../Services/apiLogin';
 import { useUserStore } from '../store/store';
 
 const useLogin = () => {
@@ -13,7 +13,7 @@ const useLogin = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await LoginService(id, password);
+      const response = await apiLogin(id, password);
       // 서버로부터 받은 응답의 상태 코드 확인
       if (response.status === 200) {
         // 상태 코드가 200이면 대쉬보드 페이지로 이동

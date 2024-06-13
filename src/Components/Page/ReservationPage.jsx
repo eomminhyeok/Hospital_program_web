@@ -53,14 +53,14 @@ const ReservationPage = () => {
                                     <td style={{ border: '1px solid #ccc' }}>{time}</td>
                                     <td style={{ border: '1px solid #ccc' }}>
                                         {reservationList    // 해당 시간에 예약한 예약자를 판별
-                                            .filter(reservation => reservation.dateTime.includes(time))
+                                            .filter(reservation => reservation.reservationDate.includes(time))
                                             .map((reservation, i) => (
                                                 i === 0 ? <div key={i}>{reservation.name}</div> : null
                                             ))}
                                     </td>
                                     <td style={{ border: '1px solid #ccc' }}>
                                         {reservationList
-                                            .filter(reservation => reservation.dateTime.includes(time))
+                                            .filter(reservation => reservation.reservationDate.includes(time))
                                             .map((reservation, i) => (
                                                 i === 1 ? <div key={i}>{reservation.name}</div> : null
                                             ))}

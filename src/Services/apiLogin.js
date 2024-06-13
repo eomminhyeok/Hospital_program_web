@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const LoginService = async (id, password) => {
+export const apiLogin = async (id, password) => {
     try {
         console.log(id, password);
         const response = await axios.post("http://localhost:8080/api/login", {id, password}, {

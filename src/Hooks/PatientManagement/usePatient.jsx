@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchService } from "../../Services/apiSearch";
+import { apiSearch } from "../../Services/apiSearch";
 import { patientStore } from "../../store/store";
 
 
@@ -15,7 +15,7 @@ const usePatient = () => {      // 환자 이름 검색 처리
 
     const searchPatient = async () => {       // 서버에서 useName에 해당하는 환자 리스트를 받아 patientList에 저장해야함
         try {
-            const response = await SearchService(name);
+            const response = await apiSearch(name);
             if (response.status === 200) {
                 setPatientList(response.data);
               } 

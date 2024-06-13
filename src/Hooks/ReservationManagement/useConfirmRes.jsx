@@ -1,12 +1,14 @@
-// 예약등록 최종단계 모달의 훅. 
-// 예약 최종 등록창에서 확인 버튼을 누를 시 스토어의 reservationList에 patientInfo+dateTime 값을 저장하여 데이터베이스에 저장할 예약정보를 서버에 전송한다.
 import { useState } from 'react';
+import { apiConfirmRes } from '../../Services/apiConfirmRes';
 
 const useConfirmRes = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [dateTime, setDateTime] = useState('');
+  const [SuccessPopup, setSuccessPopup] = useState(false);  // 예약 성공 모달
+  const [FailPopup, setFailPopup] = useState(false);  // 예약 실패 모달
+
   const [patientInfo, setPatientInfo] = useState({
     patientNum: '',
     name: '',
@@ -14,31 +16,68 @@ const useConfirmRes = () => {
     backRRN: '',
   });
 
-  const combineDateTime = () => {     // 사용자가 선택한 예약일과 예약시간을 합치는 함수.
-    // 날짜 객체인 date에서 년, 월, 일을 각각 분리한다
-    const year = selectedDate.getFullYear();
-    const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2); // 월은 0부터 시작한다. 0월은 없으므로 월+1 을 해줘야 정상적인 달로 출력된다. 월 앞에 0을 붙여 '01월' '02월'이 된다. 
-    const day = ('0' + selectedDate.getDate()).slice(-2); // '011월', '012월'로 출력되는것을 막기 위해 slice(-2)를 해준다. 문자를 처음부터 끝이아닌 마지막 두번째에서 끝부분까지 출력한다.
-    setDateTime(`${year}-${month}-${day}T${selectedTime}`); // 합쳐진 예약날짜와 시간을 dateTime에 저장
+  const combineDateTime = async () => {     // 사용자가 선택한 예약일과 예약시간을 합치는 함수.
+    if (selectedDate && selectedTime) {
+      const year = selectedDate.getFullYear();
+      const month = ('0' + (selectedDate.getMonth() + 1)).slice(-2);
+      const day = ('0' + selectedDate.getDate()).slice(-2);
+      const hours = ('0' + selectedTime.split(':')[0]).slice(-2); // 시간을 추출하고 2자리 숫자로 포맷팅
+      const minutes = ('0' + selectedTime.split(':')[1]).slice(-2); // 분을 추출하고 2자리 숫자로 포맷팅
+
+      // LocalDateTime 형식으로 조합
+      setDateTime(`${year}-${month}-${day}T${hours}:${minutes}`);
+    }
   };
 
   const getResList = (patient) => { // AddResModal에서 환자 검색시 선택한 환자의 정보를 가져옴
     setPatientInfo({
-        patientNum: patient.patientNum,
-        name: patient.name,
-        frontRRN: patient.frontRRN,
-        backRRN: patient.backRRN,
-      });
+      patientNum: patient.patientNum,
+      name: patient.name,
+      frontRRN: patient.frontRRN,
+      backRRN: patient.backRRN,
+    });
+
     setShowPopup(true);
+  };
+
+  const confirmResService = async (reservationInfo) => {
+    try {
+      const response = await apiConfirmRes(reservationInfo);
+      if (response.status === 200) {
+        console.log(response.status);
+        console.log('진료등록 성공:');
+        return true;
+      }
+      else if (response.status === 500) {
+        console.log(response.status);
+        console.log(response.message);
+        return false;
+      }
+    } catch (error) {
+      console.log('해당 날짜에 예약이 불가능합니다.');
+      return false;
+    }
   };
 
   const closePopup = () => {
     setShowPopup(false);
   };
 
+  const closeSuccessPopup = () => {
+    setSuccessPopup(false);
+  }
+
+  const closeFailPopup = () => {
+    setFailPopup(false);
+  }
 
   return {
-    dateTime,
+    closeSuccessPopup,
+    closeFailPopup,
+    SuccessPopup, setSuccessPopup,
+    FailPopup, setFailPopup,
+    confirmResService,
+    dateTime, setDateTime,
     combineDateTime,
     selectedDate, setSelectedDate,
     selectedTime, setSelectedTime,
@@ -46,7 +85,7 @@ const useConfirmRes = () => {
     getResList,
     showPopup,
     closePopup
-  }
-}
+  };
+};
 
 export default useConfirmRes;

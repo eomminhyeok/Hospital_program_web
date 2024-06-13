@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const ChartRegiService = async (chart) => {
+export const apiChartRegi = async (chart) => {
     try {
         console.log(chart);
         const response = await axios.post("http://localhost:8080/api/chart", chart, {

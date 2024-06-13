@@ -8,7 +8,7 @@ import ChartDetailModal from './ChartDetailModal';
 
 const ChartListModal = ({ show, onClose }) => {
     const { formData, showPopup, closePopup, getChartNum } = useChartDetail();
-    const { chartList } = chartStore();
+    const { chartList, setChartList } = chartStore();
 
     const modalStyle = {
         content: {
@@ -25,6 +25,22 @@ const ChartListModal = ({ show, onClose }) => {
             zIndex: 1000,
         },
     };
+
+    const closeChartList = () => {
+        setChartList([
+            {
+                chartNum: '',
+                patientNum: '',
+                name: '',
+                frontRRN: '',
+                backRRN: '',
+                chartDate: '',
+                diagnosis: '',
+                notes: '',
+            }
+        ]);
+        onClose();
+    }
 
 
     return (
@@ -60,7 +76,7 @@ const ChartListModal = ({ show, onClose }) => {
                     </table>
                 </div>
                 <div style={{ marginTop: '16px' }}>
-                    <button onClick={()=>onClose()} style={{ width: '15vw', height: '3.5vh' }}>확인</button>
+                    <button onClick={() => closeChartList()} style={{ width: '15vw', height: '3.5vh' }}>확인</button>
                 </div>
                 <ChartDetailModal show={showPopup} onClose={closePopup} formData={formData}></ChartDetailModal>
             </div>

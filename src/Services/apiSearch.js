@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const SearchService = async (name) => {
+export const apiSearch = async (name) => {
     try {
         console.log(name);
         const response = await axios.post("http://localhost:8080/api/search", {name} , {

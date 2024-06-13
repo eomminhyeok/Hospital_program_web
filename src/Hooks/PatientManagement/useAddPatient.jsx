@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AddPatientnService } from "../../Services/apiAddPatient";
+import { apiAddPatient } from "../../Services/apiAddPatient";
 
 const useAddPatient = () => {
     const [patient, setPatient] = useState({
@@ -41,7 +41,7 @@ const useAddPatient = () => {
 
     const handleRegistration = async () => {    // 환자 등록
         try {
-            const response = await AddPatientnService(patient); 
+            const response = await apiAddPatient(patient); 
             if(response.status === 200){
                 console.log(response.status);
                 console.log('환자등록 성공:');

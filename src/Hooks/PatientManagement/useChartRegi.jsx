@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import currentDateTime from '../../Components/etc/dateTime';
-import { ChartRegiService } from '../../Services/apiChartRegi';
+import { apiChartRegi } from '../../Services/apiChartRegi';
 
 const useChartRegi = () => {
   const [formData, setFormData] = useState({
@@ -53,9 +53,9 @@ const useChartRegi = () => {
     setShowPopup(false);
   };
 
-  const apiChartRegi = async (chart) => { // 진료 정보 전달
+  const chartRegiService = async (chart) => { // 진료 정보 전달
     try {
-      const response = await ChartRegiService(chart);
+      const response = await apiChartRegi(chart);
       if (response.status === 200) {
         console.log(response.status);
         console.log('진료등록 성공:');
@@ -79,7 +79,7 @@ const useChartRegi = () => {
 
 
   return {
-    apiChartRegi,
+    chartRegiService,
     formData,
     handleChange,
     handleCancel,

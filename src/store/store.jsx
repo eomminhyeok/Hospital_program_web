@@ -69,7 +69,7 @@ export const reservationStore = create((set) => ({
       name: '김철수',
       frontRRN: '910101',
       backRRN: '1423123',
-      dateTime: '2024-06-01T09:00', // 09:00 예약
+      reservationDate: '2024-06-01T09:00', // 09:00 예약
     },
     {
       reservationNum: '2',
@@ -77,7 +77,7 @@ export const reservationStore = create((set) => ({
       name: '이영희',
       frontRRN: '880202',
       backRRN: '1234567',
-      dateTime: '2024-06-01T09:30', // 09:30 예약
+      reservationDate: '2024-06-01T09:30', // 09:30 예약
     },
     {
       reservationNum: '3',
@@ -85,7 +85,7 @@ export const reservationStore = create((set) => ({
       name: '박민수',
       frontRRN: '950303',
       backRRN: '9876543',
-      dateTime: '2024-06-01T10:00', // 10:00 예약
+      reservationDate: '2024-06-01T10:00', // 10:00 예약
     },
     {
       reservationNum: '4',
@@ -93,7 +93,7 @@ export const reservationStore = create((set) => ({
       name: '주사과',
       frontRRN: '910101',
       backRRN: '1423123',
-      dateTime: '2024-06-01T09:00', // 09:00 예약
+      reservationDate: '2024-06-01T09:00', // 09:00 예약
     },
     {
       reservationNum: '5',
@@ -101,7 +101,7 @@ export const reservationStore = create((set) => ({
       name: '김수박',
       frontRRN: '880202',
       backRRN: '1234567',
-      dateTime: '2024-06-01T10:00', // 09:30 예약
+      reservationDate: '2024-06-01T10:00', // 09:30 예약
     },
     {
       reservationNum: '6',
@@ -109,7 +109,7 @@ export const reservationStore = create((set) => ({
       name: '박포도',
       frontRRN: '950303',
       backRRN: '9876543',
-      dateTime: '2024-06-01T11:00', // 10:00 예약
+      reservationDate: '2024-06-01T11:00', // 10:00 예약
     },
   ],
   setReservationList: (resList) => set({ resList }),

@@ -1,12 +1,10 @@
-package com.example.demo.controller;
+package com.example.demo.controller.PatientManagement;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.dto.ChartDTO;
-import com.example.demo.service.ChartListService;
+import com.example.demo.service.PatientManagement.ChartListService;
 
 import java.util.List;
 

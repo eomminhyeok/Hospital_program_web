@@ -1,7 +1,7 @@
 // 보고싶은 환자의 진료기록 상세보기 버튼시 환자의 진료기록 리스트를 불러오는 훅
 
 import { useState } from 'react';
-import { ChartListService } from '../../Services/apiChartList';
+import { apiChartList } from '../../Services/apiChartList';
 import { chartStore } from '../../store/store';
 
 
@@ -13,7 +13,7 @@ const useChartList = () => {
     // 환자 번호를 받아옴. 이 patientNum을 service 파일에서 불러와 서버로 보낸 뒤 해당하는 진료기록 데이터를 store 전역 리스트맵인 chartList에 담는다. 
     //즉 chartList에는 해당하는 환자번호의 진료기록 리스트가 담기게 된다. 
     try{
-      const response = await ChartListService(patientNum);
+      const response = await apiChartList(patientNum);
       if(response.status === 200) {
         console.log(response.status);
         setChartList(response.data);

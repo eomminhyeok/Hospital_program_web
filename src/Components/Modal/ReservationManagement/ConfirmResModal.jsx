@@ -1,14 +1,26 @@
-// 예약등록 최종 모달
-
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 import useConfirmRes from '../../../Hooks/ReservationManagement/useConfirmRes';
+import BasicModal from '../BasicModal';
+import ErrorModal from '../ErrorModal';
 
-const ConfirmResModal = ({show, onClose, patientInfo}) => {
-  const { selectedDate, setSelectedDate, selectedTime, setSelectedTime} = useConfirmRes();
+const ConfirmResModal = ({ show, onClose, patientInfo }) => {
+  const {
+    selectedDate, setSelectedDate, selectedTime, setSelectedTime, confirmResService, combineDateTime, dateTime, setDateTime,
+    SuccessPopup, setSuccessPopup, FailPopup, setFailPopup, closeSuccessPopup, closeFailPopup
+  } = useConfirmRes();
+
+  const [reservationInfo, setReservationInfo] = useState({
+    reservationNum: '',
+    patientNum: '',
+    name: '',
+    frontRRN: '',
+    backRRN: '',
+    reservationDate: ''
+  });
 
   const modalStyle = {
     content: {
@@ -19,10 +31,10 @@ const ConfirmResModal = ({show, onClose, patientInfo}) => {
       transform: 'translate(-50%, -50%)',
       padding: '2vh 1vw 0 2vw',
       textAlign: 'left',
-      zIndex: 1001,
+      zIndex: 1000,
     },
     overlay: {
-        zIndex: 1001,
+      zIndex: 1000,
     },
   };
 
@@ -38,11 +50,39 @@ const ConfirmResModal = ({show, onClose, patientInfo}) => {
 
   const timeOptions = timeSlot.map(time => ({ value: time, label: time }));
 
-  // 현재 날짜를 가져오고, 그 이전의 날짜를 비활성화하기 위해 minDate 변수 설정
   const currentDate = new Date();
   const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
-  const selectBoxStyles = {  // select box 스타일 커스텀
+  const makeReservation = async () => { // 예약 정보를 취합
+    await combineDateTime();  // 사용자가 선택한 날짜와 시간을 합쳐 DateTime 형으로 만듦
+    setReservationInfo({  // 최종 예약 정보 업데이트
+      reservationNum: '',
+      patientNum: patientInfo.patientNum,
+      name: patientInfo.name,
+      frontRRN: patientInfo.frontRRN,
+      backRRN: patientInfo.backRRN,
+      reservationDate: dateTime
+    });
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { // reservationInfo의 값이 변경될 때 실행
+    const handleReservation = async () => {
+      if (reservationInfo.reservationDate) {
+        const isSuccess = await confirmResService(reservationInfo);
+        if (isSuccess) {  // confirmResService의 리턴값에 따라 성공/실패 모달 오픈
+          setSuccessPopup(true);
+        } else {
+          setFailPopup(true);
+        }
+        setDateTime('');
+      }
+    };
+
+    handleReservation();
+  }, [reservationInfo , setDateTime, setFailPopup, setSuccessPopup]);
+
+  const selectBoxStyles = {
     control: (provided) => ({
       ...provided,
       minHeight: '1.8rem', 
@@ -62,8 +102,6 @@ const ConfirmResModal = ({show, onClose, patientInfo}) => {
       ...provided,
       height: '1.875rem',
     }),
-
-
   };
 
   return (
@@ -93,9 +131,11 @@ const ConfirmResModal = ({show, onClose, patientInfo}) => {
         />
       </div>
       <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginTop: '2vh'}}>
-        <button onClick={onClose} style={{ marginRight: '3vw' }}>확인</button>
+        <button onClick={makeReservation} style={{ marginRight: '3vw' }}>확인</button>  {/* 확인버튼 클릭 시 makeReservation이 실행. rservationInfo가 업데이트 되면서 useEffect 실행 */}
         <button onClick={onClose}>취소</button>
       </div>
+      <BasicModal show={SuccessPopup} onClose={closeSuccessPopup} text={"예약 완료"} message={"해당 날짜에 예약을 성공하였습니다"}></BasicModal>
+      <ErrorModal show={FailPopup} onClose={closeFailPopup} text={"예약 실패"} message={"더 이상 해당 날짜에 예약할 수 없습니다."}></ErrorModal>
     </Modal>
   );
 };

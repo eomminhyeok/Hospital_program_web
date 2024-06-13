@@ -7,7 +7,7 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel}) 
     // 4.PatientPage에서 받아온 formData와 이벤트 핸들러 사용.
     // 즉, 진료등록을 할 때 해당 환자의 기본 정보를 불러와야 하는데, 그 흐름은 PatientPage->useChartRegi->PatientPage->ChartRegiModal 순서가 됨.
 
-    const { apiChartRegi } = useChartRegi();
+    const { chartRegiService } = useChartRegi();
 
     const modalStyle = {
         content: {
@@ -112,7 +112,7 @@ const ChartRegiModal = ({ show, onClose, formData, handleChange, handleCancel}) 
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3vh' }}>
-                    <button onClick={() => { apiChartRegi(formData); onClose(); }} style={{ marginRight: '10vw', width: '15vw', height: '3.5vh' }}>확인</button>
+                    <button onClick={() => { chartRegiService(formData); onClose(); }} style={{ marginRight: '10vw', width: '15vw', height: '3.5vh' }}>확인</button>
                     <button onClick={() => { handleCancel(); onClose(); }} style={{ width: '15vw', height: '3.5vh' }}>취소</button>
                 </div>
 

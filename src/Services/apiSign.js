@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const SignService = async (userInfo) => {
+export const apiSign = async (userInfo) => {
     try {
         console.log(userInfo);
         const response = await axios.post("http://localhost:8080/api/sign", userInfo, {

@@ -9,7 +9,7 @@ import ConfirmResModal from './ConfirmResModal';
 
 const AddResModal = ({show, onClose}) => {
   const { patientList } = patientStore();
-  const { searchName, setSearchName } = useAddRes();
+  const { searchName, setSearchName, searchPatient } = useAddRes();
   const { showPopup, closePopup, getResList, patientInfo } = useConfirmRes();
 
   const modalStyle = {
@@ -34,7 +34,7 @@ const AddResModal = ({show, onClose}) => {
                 <h2 style={{ margin: '0 1vw 0 0' }}>환자 검색</h2>
                 <input type='text' value={searchName} onChange={(e) => setSearchName(e.target.value)}
                     style={{ height: '3vh', width: '10vw', fontSize: '1rem', marginRight: '1vw' }} placeholder="이름을 입력하세요"></input>
-                <button style={{ height: '4vh', width: '4vw' }}>검색</button>
+                <button onClick={()=>searchPatient()} style={{ height: '4vh', width: '4vw' }}>검색</button>
             </div>
             <div style={{ maxHeight: '65vh', overflowY: 'scroll', backgroundColor: 'solid #ccc' }}>
                 <table style={{ ...tableStyle, borderCollapse: 'collapse', backgroundColor: 'white'}}>

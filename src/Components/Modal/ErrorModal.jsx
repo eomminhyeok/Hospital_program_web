@@ -11,7 +11,11 @@ const ErrorModal = ({ text, show, onClose, message}) => {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       padding: '20px',
-      textAlign: 'center'
+      textAlign: 'center',
+      zIndex: 1000 // z-index를 설정하여 모달이 최상위에 위치
+    },
+    overlay: {
+      zIndex: 1000 // content와 overlay 두 영역 모두에서 최상위에 위치하게 하여 모든 요소에서 최상위에 위치하도록 보장
     }
   };
 
