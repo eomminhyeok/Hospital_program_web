@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export const apiConfirmRes = async (reservation) => {
+export const apiAddRes = async (reservation) => {
     console.log(reservation);
     try { 
         const response = await axios.post("http://localhost:8080/api/addReservation", reservation , {
@@ -14,7 +14,6 @@ export const apiConfirmRes = async (reservation) => {
         return {
             data: response.data,
             status: response.status,
-            message: response.message
         };
         
     } catch (error) {

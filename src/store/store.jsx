@@ -64,53 +64,13 @@ export const chartStore = create((set) => ({
 export const reservationStore = create((set) => ({
   reservationList: [
     {
-      reservationNum: '1',
-      patientNum: '2',
-      name: '김철수',
-      frontRRN: '910101',
-      backRRN: '1423123',
-      reservationDate: '2024-06-01T09:00', // 09:00 예약
-    },
-    {
-      reservationNum: '2',
-      patientNum: '3',
-      name: '이영희',
-      frontRRN: '880202',
-      backRRN: '1234567',
-      reservationDate: '2024-06-01T09:30', // 09:30 예약
-    },
-    {
-      reservationNum: '3',
-      patientNum: '4',
-      name: '박민수',
-      frontRRN: '950303',
-      backRRN: '9876543',
-      reservationDate: '2024-06-01T10:00', // 10:00 예약
-    },
-    {
-      reservationNum: '4',
-      patientNum: '5',
-      name: '주사과',
-      frontRRN: '910101',
-      backRRN: '1423123',
-      reservationDate: '2024-06-01T09:00', // 09:00 예약
-    },
-    {
-      reservationNum: '5',
-      patientNum: '6',
-      name: '김수박',
-      frontRRN: '880202',
-      backRRN: '1234567',
-      reservationDate: '2024-06-01T10:00', // 09:30 예약
-    },
-    {
-      reservationNum: '6',
-      patientNum: '7',
-      name: '박포도',
-      frontRRN: '950303',
-      backRRN: '9876543',
-      reservationDate: '2024-06-01T11:00', // 10:00 예약
+      reservationNum: '',
+      patientNum: '',
+      name: '',
+      frontRRN: '',
+      backRRN: '',
+      reservationDate: '',
     },
   ],
-  setReservationList: (resList) => set({ resList }),
+  setReservationList: (reservationList) => set({ reservationList }),
 }));

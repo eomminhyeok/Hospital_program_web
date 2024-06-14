@@ -17,7 +17,7 @@ const ReservationPage = () => {
     const { reservationList } = reservationStore();
     const { showPopup, handlePopup, closePopup } = useAddRes();
     const { selectedDate, setSelectedDate } = useReservation();
-    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+    const formattedDate = format(selectedDate, 'yyyy-MM-dd');   // 사용자가 선택한 날짜의 데이터를 yyyy-MM-dd 형태로 포맷팅하여 저장
     const { showPopup:showPopup2, handlePopup:handlePopup2, closePopup:closePopup2} = useCancleRes();
 
     const timeSlot = [
@@ -53,14 +53,14 @@ const ReservationPage = () => {
                                     <td style={{ border: '1px solid #ccc' }}>{time}</td>
                                     <td style={{ border: '1px solid #ccc' }}>
                                         {reservationList    // 해당 시간에 예약한 예약자를 판별
-                                            .filter(reservation => reservation.reservationDate.includes(time))
+                                            .filter(reservation => reservation.reservationDate.includes(formattedDate + 'T' + time)) // 사용자가 선택한 날짜와 시간을 LocalDateTime 형태로 조합한 값을 포함한 예약자 선별
                                             .map((reservation, i) => (
                                                 i === 0 ? <div key={i}>{reservation.name}</div> : null
                                             ))}
                                     </td>
                                     <td style={{ border: '1px solid #ccc' }}>
                                         {reservationList
-                                            .filter(reservation => reservation.reservationDate.includes(time))
+                                            .filter(reservation => reservation.reservationDate.includes(formattedDate + 'T' + time))
                                             .map((reservation, i) => (
                                                 i === 1 ? <div key={i}>{reservation.name}</div> : null
                                             ))}

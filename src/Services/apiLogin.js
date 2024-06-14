@@ -15,7 +15,8 @@ export const apiLogin = async (id, password) => {
         console.log(response.data);
 
         return {
-            data: response.data,
+            userName: response.data.userName,
+            reservations: response.data.reservations,
             status: response.status
         };
         

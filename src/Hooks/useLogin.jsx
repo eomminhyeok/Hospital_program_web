@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../Services/apiLogin';
-import { useUserStore } from '../store/store';
+import { reservationStore, useUserStore } from '../store/store';
 
 const useLogin = () => {
   const [ id, setId ] = useState('');
@@ -9,6 +9,7 @@ const useLogin = () => {
   const [ error, setError ] = useState('');
   const [ showPopup, setShowPopup ] = useState(false);
   const { userInfo } = useUserStore();
+  const { reservationList, setReservationList } = reservationStore();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -17,8 +18,15 @@ const useLogin = () => {
       // 서버로부터 받은 응답의 상태 코드 확인
       if (response.status === 200) {
         // 상태 코드가 200이면 대쉬보드 페이지로 이동
-        userInfo.userName = response.data;
+        console.log(response.reservations);
+        userInfo.name = response.userName;
+        setReservationList(response.reservations);
         navigate('/DashBoard');
+
+        // setReservationList 이후에 reservationList가 업데이트 되는 것을 확인하기 위해
+      setTimeout(() => {
+        console.log(reservationList);
+      }, 1000); // 예: 1초 후에 reservationList를 콘솔에 출력
       } 
     } catch (error) {
       console.error('로그인 에러:', error);
