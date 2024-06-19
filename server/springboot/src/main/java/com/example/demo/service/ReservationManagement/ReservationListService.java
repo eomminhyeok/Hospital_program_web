@@ -6,6 +6,9 @@ import com.example.demo.dto.ReservationDTO;
 import com.example.demo.entity.ReservationView;
 import com.example.demo.repository.ReservationViewRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +22,8 @@ public class ReservationListService {
 	}
 	
 	public List<ReservationDTO> getReservationList() {
-		List<ReservationView> reservationView = reservationViewRepository.findAll();
+		LocalDateTime today = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);	// 날짜와 시간을 분리하여 날짜는 오늘 시간은 00:00 를 기준으로 조회
+		List<ReservationView> reservationView = reservationViewRepository.findReservation(today);
 		return reservationView.stream()
 				.map(this::convertToDTO)
 				.collect(Collectors.toList());

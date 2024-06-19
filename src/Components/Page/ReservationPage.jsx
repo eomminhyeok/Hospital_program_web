@@ -9,8 +9,8 @@ import { format } from 'date-fns';
 import AddResModal from '../Modal/ReservationManagement/AddResModal';
 import useAddRes from '../../Hooks/ReservationManagement/useAddRes';
 import useReservation from '../../Hooks/ReservationManagement/useReservation';
-import useCancleRes from '../../Hooks/ReservationManagement/useCancleRes';
-import CancleResModal from '../Modal/ReservationManagement/CancleResModal';
+import useCancleRes from '../../Hooks/ReservationManagement/useCancelRes';
+import CancleResModal from '../Modal/ReservationManagement/CancelResModal';
 
 
 const ReservationPage = () => {
