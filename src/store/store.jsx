@@ -60,8 +60,9 @@ export const chartStore = create((set) => ({
 
 
 
-// 예약 정보
+// 예약 리스트
 export const reservationStore = create((set) => ({
+  // 전체 예약 리스트
   reservationList: [
     {
       reservationNum: '',
@@ -73,4 +74,18 @@ export const reservationStore = create((set) => ({
     },
   ],
   setReservationList: (reservationList) => set({ reservationList }),
+
+  // 금일 예약 리스트
+  reservationTodayList: [
+    {
+      reservationNum: '',
+      patientNum: '',
+      name: '',
+      frontRRN: '',
+      backRRN: '',
+      reservationDate: '',
+    },
+  ],
+  setReservationTodayList: (reservationTodayList) => set({ reservationTodayList }),
 }));
+
