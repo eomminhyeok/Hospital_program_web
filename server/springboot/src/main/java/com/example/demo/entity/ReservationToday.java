@@ -1,21 +1,35 @@
-package com.example.demo.dto;
+package com.example.demo.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import jakarta.persistence.*;
 
-public class ReservationDTO {
+@Entity
+@Table(name = "RESERVATIONTODAY")
+public class ReservationToday {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_res")	// 시퀀스 생성
+	@SequenceGenerator(name = "seq_res", sequenceName = "SEQ_RESERVATION", allocationSize = 1) // sequencName=실제 시퀀스 이름. name=시퀀스 생성자 이름
+	@Column(name="RESERVATIONNUM")
 	private Long reservationNum;
+	
+	@Column(name="PATIENTNUM")
 	private Long patientNum;
+	
+	@Column(name="NAME")
 	private String name;
+
+	@Column(name="FRONTRRN")
 	private String frontRRN;
+	
+	@Column(name="BACKRRN")
 	private String backRRN;
+	
+	@Column(name="RESERVATIONDATE")
 	private LocalDateTime reservationDate;
-	private List<ReservationDTO> reservations;	// 예약리스트를 담을 변수
-	private List<ReservationDTO> reservationsToday; // 금일 예약리스트만 담을 변수
 	
-	public ReservationDTO() {}
+	public ReservationToday () {}
 	
-	public ReservationDTO(Long reservationNum, Long patientNum, String name, String frontRRN, String backRRN, LocalDateTime reservationDate) {
+	public ReservationToday(Long reservationNum, Long patientNum, String name, String frontRRN, String backRRN, LocalDateTime reservationDate) {
 		this.reservationNum = reservationNum;
 		this.patientNum = patientNum;
 		this.name = name;
@@ -71,20 +85,4 @@ public class ReservationDTO {
 	public void setReservationDate(LocalDateTime reservationDate) {
 		this.reservationDate = reservationDate;
 	}
-	
-	public List<ReservationDTO> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<ReservationDTO> reservations) {
-        this.reservations = reservations;
-    }
-	
-	public List<ReservationDTO> getReservationsToday() {
-        return reservationsToday;
-    }
-
-    public void setReservationsToday(List<ReservationDTO> reservationsToday) {
-        this.reservationsToday = reservationsToday;
-    }
 }

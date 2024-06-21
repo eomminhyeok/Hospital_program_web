@@ -1,6 +1,7 @@
 package com.example.demo.service.ReservationManagement;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ReservationDTO;
@@ -12,6 +13,9 @@ public class AddReservationService {
 	
 	@Autowired
 	private ReservationRepository reservationRepository;
+	
+	 @Autowired
+	    private JdbcTemplate jdbcTemplate;
 	
 	 private static final int max = 2; // 동시간대 최대 예약자 수
 	
@@ -31,6 +35,8 @@ public class AddReservationService {
 		reservation.setReservationDate(reservationDTO.getReservationDate());
 		
 		reservationRepository.save(reservation);
+		
+		 jdbcTemplate.execute("CALL REFRESH_RESERVATION_TODAY()"); // jdbcTemplate를 이용해 새로운 예약 추가시 REFRESH_RESERVATION_TODAY 프로시저를 통해 금일 예약자 목록 테이블도 업데이트한다
 	}
 
 }

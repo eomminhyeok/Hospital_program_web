@@ -24,7 +24,7 @@ public class ReservationTodayListService {
 	
 	public List<ReservationDTO> getReservationTodayList() {
 		LocalDateTime today = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);	// 날짜와 시간을 분리하여 날짜는 오늘 시간은 00:00 를 기준으로 조회
-		List<ReservationTodayView> reservationTodayView = reservationTodayViewRepository.findAll();
+		List<ReservationTodayView> reservationTodayView = reservationTodayViewRepository.findAllByOrderByReservationDateAsc();
 		return reservationTodayView.stream()
 				.map(this::convertToDTO)
 				.collect(Collectors.toList());

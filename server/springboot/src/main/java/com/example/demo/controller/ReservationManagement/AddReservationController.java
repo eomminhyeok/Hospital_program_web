@@ -11,6 +11,7 @@ import com.example.demo.dto.ReservationDTO;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.service.ReservationManagement.AddReservationService;
 import com.example.demo.service.ReservationManagement.ReservationListService;
+import com.example.demo.service.ReservationManagement.ReservationTodayListService;
 
 @RestController
 public class AddReservationController {
@@ -21,8 +22,11 @@ public class AddReservationController {
 	@Autowired
     private ReservationListService reservationListService;
 	
+	@Autowired
+    private ReservationTodayListService reservationTodayListService;
+	
 	@PostMapping("/api/addReservation")
-	public ResponseEntity<List<ReservationDTO>> addReservation(@RequestBody ReservationDTO reservationDTO) {
+	public ResponseEntity<ReservationDTO> addReservation(@RequestBody ReservationDTO reservationDTO) {
 		try {
 			System.out.println("Received ReservationDTO:");
 			System.out.println("ReservationNum: " + reservationDTO.getReservationNum());
@@ -32,8 +36,12 @@ public class AddReservationController {
 			System.out.println("BackRRN: " + reservationDTO.getBackRRN());
 			System.out.println("ReservationDate: " + reservationDTO.getReservationDate());
 			addReservationService.addReservation(reservationDTO);
-			List<ReservationDTO> reservationList = reservationListService.getReservationList();
-			 return ResponseEntity.ok(reservationList);
+			List<ReservationDTO> reservations = reservationListService.getReservationList();	// 예약리스트 조회 결과를 resrvations에 저장
+			List<ReservationDTO> reservationsToday = reservationTodayListService.getReservationTodayList(); // 금일 예약 조회 결과를 저장
+			ReservationDTO response = new ReservationDTO();
+			response.setReservations(reservations);	// DTO로 변환하여 response에 reservations와 reservationsToday를 담아 클라이언트에게 전송한다.
+			response.setReservationsToday(reservationsToday);
+			return ResponseEntity.ok(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}

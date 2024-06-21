@@ -3,7 +3,7 @@ import { apiAddRes } from '../../Services/apiAddRes';
 import { reservationStore } from '../../store/store';
 
 const useConfirmRes = () => {
-  const { setReservationList } = reservationStore();
+  const { reservationList, setReservationList, reservationTodayList, setReservationTodayList } = reservationStore();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -66,8 +66,14 @@ const useConfirmRes = () => {
       if (response.status === 200) {
         console.log(response.status);
         console.log('예약등록 성공:');
-        setReservationList(response.data);
+        setReservationList(response.reservations);
+        setReservationTodayList(response.reservationsToday);
         setSuccessPopup(true);
+
+        setTimeout(() => {
+          console.log('예약내역: ' + reservationList);
+          console.log('금일 예약 내역:' + reservationTodayList);
+        }, 1000);
       }
       else if (response.status === 500) {
         console.log(response.status);
