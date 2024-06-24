@@ -5,7 +5,7 @@ import { apiCancelReservation } from '../../Services/apiCancelReservation';
 import { reservationStore } from '../../store/store';
 
 const useCancelConfirm = () => {
-  const { setReservationList } = reservationStore();
+  const { setReservationList, setReservationTodayList } = reservationStore();
   const [showPopup, setShowPopup] = useState(false);
   const [reservationNum, setReservationNum] = useState('');
   const [SuccessPopup, setSuccessPopup] = useState(false);  // LastCheckModal -> 예약 성공 모달 open
@@ -23,9 +23,11 @@ const useCancelConfirm = () => {
   const cancleReservation = async (reservationNum) => { // CancleConfirmModal에서 예약 취소 확정문구에서 확인 버튼 이벤트시 서버로 예약번호 전송
     try {
       const response = await apiCancelReservation(reservationNum); // 회원가입 서비스 함수 호출 후 응답 저장
+      console.log(response.reservationsToday);
       if (response.status === 200) {
         console.log('예약취소 성공');
-        setReservationList(response.data);
+        setReservationList(response.reservations);
+        setReservationTodayList(response.reservationsToday);
         setSuccessPopup(true);
       }
       else if (response.status === 500) {

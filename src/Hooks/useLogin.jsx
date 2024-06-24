@@ -8,7 +8,7 @@ const useLogin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const { userInfo } = useUserStore();
+  const { setUserInfo } = useUserStore();
   const { reservationList, setReservationList, reservationTodayList, setReservationTodayList } = reservationStore();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const useLogin = () => {
       // 서버로부터 받은 응답의 상태 코드 확인
       if (response.status === 200) {
         // 상태 코드가 200이면 대쉬보드 페이지로 이동
-        userInfo.name = response.userName;
+        setUserInfo({name: response.name});
         setReservationList(response.reservations);
         setReservationTodayList(response.reservationsToday);
         navigate('/DashBoard');

@@ -13,7 +13,8 @@ export const apiCancelReservation = async (reservationNum) => {    // 예약번�
 
         
         return {
-            data: response.data,
+            reservations: response.data.reservations,
+            reservationsToday: response.data.reservationsToday,
             status: response.status
         };
         

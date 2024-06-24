@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { tableStyle, thStyle, buttonStyle } from '../../styles/style';
 import DoughnutChart from '../etc/doughnutChart';
 import TopBar from '../etc/topBar';
 import useDashBoard from '../../Hooks/useDashBoard'; // useDashBoard 훅 임포트
+import { countsStore } from '../../store/store';
+import useReservationCount from '../etc/useReservationCount';
 
 const DashBoard = () => {
+    const { counts } = countsStore();
+    const { calculateCounts } = useReservationCount();
+
     const {
         reservations,
         registrations,
@@ -14,6 +19,10 @@ const DashBoard = () => {
         handleDeleteClick,
         renderRows,
     } = useDashBoard();
+
+    useEffect(() => {
+        calculateCounts(); // reservationList가 변경될 때마다 counts를 업데이트하기 위해 calculateCounts 호출
+    }, [calculateCounts]); // useEffect의 의존성 배열에 calculateCounts 추가
 
     return (
         <div>
@@ -63,7 +72,7 @@ const DashBoard = () => {
                         borderColor: selectedRegistration ? 'black' : 'gray'
                     }}>삭제</button>
                 </div>
-                <DoughnutChart morning={10} afternoon={20} />
+                <DoughnutChart morning={counts.morning} afternoon={counts.afternoon} />
             </div>
         </div>
     );

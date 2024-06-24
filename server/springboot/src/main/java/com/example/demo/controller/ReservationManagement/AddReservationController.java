@@ -35,6 +35,7 @@ public class AddReservationController {
 			System.out.println("FrontRRN: " + reservationDTO.getFrontRRN());
 			System.out.println("BackRRN: " + reservationDTO.getBackRRN());
 			System.out.println("ReservationDate: " + reservationDTO.getReservationDate());
+			
 			addReservationService.addReservation(reservationDTO);
 			List<ReservationDTO> reservations = reservationListService.getReservationList();	// 예약리스트 조회 결과를 resrvations에 저장
 			List<ReservationDTO> reservationsToday = reservationTodayListService.getReservationTodayList(); // 금일 예약 조회 결과를 저장

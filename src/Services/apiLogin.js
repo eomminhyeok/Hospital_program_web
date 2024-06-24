@@ -16,7 +16,7 @@ export const apiLogin = async (id, password) => {
 
 
         return {
-            userName: response.data.userName,
+            name: response.data.userName,
             reservations: response.data.reservations,
             reservationsToday: response.data.reservationsToday,
             status: response.status
