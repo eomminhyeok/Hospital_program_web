@@ -96,6 +96,10 @@ export const reservationStore = create(
         },
       ],
       setReservationTodayList: (reservationTodayList) => set({ reservationTodayList }),
+
+      // 접수 목록
+      registrations: [],
+      setRegistrations: (registrations) => set({registrations}),
     }),
     {
       name: 'reservation-storage', // 로컬 스토리지 키

@@ -9,20 +9,18 @@ export const tableStyle = {
 };
 
 export const tdStyle = {
-    padding: '1vh',
-    textAlign: 'center',
     border: '0.1vw solid #ccc',
-    borderRadius: '0.5vw',
 };
 
 export const thStyle = {
-    ...tdStyle,
+    padding: '1vh',
+    textAlign: 'center',
     position: 'sticky',
     top: 0,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'rgb(220, 255, 220)',
     zIndex: 1,
     border: '0.1vw solid #ccc',
-    borderRadius: '0.5vw',
+
 };
 
 export const buttonStyle = { // shortButton button

@@ -1,7 +1,7 @@
 // 예약 관리 페이지
 import React from 'react';
 import TopBar from '../etc/topBar';
-import { tableStyle, thStyle } from '../../styles/style';
+import { tableStyle, thStyle, tdStyle } from '../../styles/style';
 import { reservationStore } from '../../store/store';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -34,7 +34,7 @@ const ReservationPage = () => {
         <div>
             <TopBar />
             <div style={{ display: 'flex', alignItems: 'center'}}>
-                <h2 style={{margin:'0 32vw 0 28vw'}}>&lt;{formattedDate}&gt;</h2>
+                <h2 style={{margin:'0 32vw 0 30vw'}}>&lt;{formattedDate}&gt;</h2>
                 <h2>&lt;Calendar&gt;</h2>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
@@ -50,15 +50,15 @@ const ReservationPage = () => {
                         <tbody>
                             {timeSlot.map((time, index) => (
                                 <tr key={index}>
-                                    <td style={{ border: '1px solid #ccc' }}>{time}</td>
-                                    <td style={{ border: '1px solid #ccc' }}>
+                                    <td style={tdStyle}>{time}</td>
+                                    <td style={tdStyle}>
                                         {reservationList    // 해당 시간에 예약한 예약자를 판별
                                             .filter(reservation => reservation.reservationDate.includes(formattedDate + 'T' + time)) // 사용자가 선택한 날짜와 시간을 LocalDateTime 형태로 조합한 값을 포함한 예약자 선별
                                             .map((reservation, i) => (
                                                 i === 0 ? <div key={i}>{reservation.name}</div> : null
                                             ))}
                                     </td>
-                                    <td style={{ border: '1px solid #ccc' }}>
+                                    <td style={tdStyle}>
                                         {reservationList
                                             .filter(reservation => reservation.reservationDate.includes(formattedDate + 'T' + time))
                                             .map((reservation, i) => (

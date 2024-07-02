@@ -21,7 +21,7 @@ const DashBoard = () => {
     } = useDashBoard();
 
     useEffect(() => {
-        calculateCounts(); // reservationList가 변경될 때마다 counts를 업데이트하기 위해 calculateCounts 호출
+        calculateCounts(); // reservationList가 변경될 때마다 도넛차트 counts를 업데이트하기 위해 calculateCounts 호출
     }, [calculateCounts]); // useEffect의 의존성 배열에 calculateCounts 추가
 
     return (
@@ -72,7 +72,7 @@ const DashBoard = () => {
                         borderColor: selectedRegistration ? 'black' : 'gray'
                     }}>삭제</button>
                 </div>
-                <DoughnutChart morning={counts.morning} afternoon={counts.afternoon} />
+                <DoughnutChart morning={counts.morning} afternoon={counts.afternoon} header={'금일 예약 현황'}/>
             </div>
         </div>
     );

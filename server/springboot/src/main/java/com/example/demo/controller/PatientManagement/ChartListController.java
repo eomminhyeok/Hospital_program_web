@@ -28,4 +28,15 @@ public class ChartListController {
 			return new ResponseEntity<>(chartList, HttpStatus.OK);
 		}
 	}
+	
+	@PostMapping("/api/chartListAll")
+	public ResponseEntity<?> getChartListAll(){
+		List<ChartDTO> chartListAll = chartListService.getChartListAll();
+		System.out.println("차트목록: " + chartListAll);
+		if (chartListAll.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		} else {
+			return new ResponseEntity<>(chartListAll, HttpStatus.OK);
+		}
+	}
 }

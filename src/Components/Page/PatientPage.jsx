@@ -1,7 +1,7 @@
 // 환자 관리 페이지
 import TopBar from '../etc/topBar';
 import usePatient from '../../Hooks/PatientManagement/usePatient';
-import { tableStyle, thStyle} from '../../styles/style';
+import { tableStyle, thStyle, tdStyle} from '../../styles/style';
 import { patientStore } from '../../store/store';
 import RegistrationModal from '../Modal/PatientManagement/AddPatientModal';
 import ChartRegiModal from '../Modal/PatientManagement/ChartRegiModal';
@@ -47,16 +47,16 @@ const PatientPage = () => {
                     <tbody>
                     {patientList.map((patient, index) => (
                             <tr key={index}>
-                                <td style={{border : '1px solid #ccc'}}>{patient.patientNum}</td>
-                                <td style={{border : '1px solid #ccc'}}>{patient.name}</td>
-                                <td style={{border : '1px solid #ccc'}}>{patient.frontRRN}</td>
-                                <td style={{border : '1px solid #ccc'}}>{patient.backRRN}</td>
+                                <td style={tdStyle}>{patient.patientNum}</td>
+                                <td style={tdStyle}>{patient.name}</td>
+                                <td style={tdStyle}>{patient.frontRRN}</td>
+                                <td style={tdStyle}>{patient.backRRN}</td>
 
-                                <td style={{border : '1px solid #ccc'}}>{patient.sex}</td>
-                                <td style={{border : '1px solid #ccc'}}>{patient.address}</td>
-                                <td style={{border : '1px solid #ccc'}}>{patient.phone}</td>
-                                <td style={{border : '1px solid #ccc'}}><button onClick={() => getPatientNum(patient.patientNum)}>상세보기</button></td>
-                                <td style={{border : '1px solid #ccc'}}><button onClick={() => handleChartPop(patient)}>등 록</button></td>
+                                <td style={tdStyle}>{patient.sex}</td>
+                                <td style={tdStyle}>{patient.address}</td>
+                                <td style={tdStyle}>{patient.phone}</td>
+                                <td style={tdStyle}><button onClick={() => getPatientNum(patient.patientNum)}>상세보기</button></td>
+                                <td style={tdStyle}><button onClick={() => handleChartPop(patient)}>등 록</button></td>
                                 {/* 1.useChartRegi의 handlePopup으로 해당 행의 환자정보를 전송 */}
                             </tr>
                         ))}

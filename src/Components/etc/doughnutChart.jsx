@@ -27,8 +27,10 @@ const centerTextPlugin = { // 차트 가운데 표시할 텍스트 플러그인 
 
 Chart.register(centerTextPlugin);
 
-const DoughnutChart = ({ morning, afternoon }) => {
+const DoughnutChart = ({ morning, afternoon, header }) => { // morning 오전 진료자 수, afternoon 오후 진료자 수, header 차트 이름
     const total = morning + afternoon;
+
+    console.log("header:" + header);
 
     const data = {
         labels: ['오전', '오후'],
@@ -77,7 +79,7 @@ const DoughnutChart = ({ morning, afternoon }) => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1>금일 예약 현황</h1>
+            <h1>{header}</h1>
             <div style={{ position: 'relative', width: '20vw', height: '40vh', margin: '10% 0 0 5%' }}>
 
                 <Doughnut data={data} options={options} /> {/* 차트 생성 */}

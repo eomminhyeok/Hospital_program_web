@@ -25,6 +25,13 @@ public class ChartListService {
 				.collect(Collectors.toList());
 	}
 	
+	public List<ChartDTO> getChartListAll() {
+		List<ChartView> chartViews = chartViewRepository.findAll();
+		return chartViews.stream()
+				.map(this::convertToDTO)
+				.collect(Collectors.toList());
+	}
+	
 	private ChartDTO convertToDTO(ChartView chartView) {
 		ChartDTO chartDTO = new ChartDTO();
 		chartDTO.setChartNum(chartView.getChartNum());

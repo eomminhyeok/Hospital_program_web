@@ -11,7 +11,7 @@ const useAddRes = () => {
   const [searchName, setSearchName] = useState('');
   const { setPatientList } = patientStore();
 
-  const searchPatient = async () => {       // 서버에서 useName에 해당하는 환자 리스트를 받아 patientList에 저장
+  const searchPatient = async () => {  
     try {
         const response = await apiSearch(searchName);
         if (response.status === 200) {
