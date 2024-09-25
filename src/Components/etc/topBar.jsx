@@ -8,19 +8,24 @@ import useTopBar from '../../Hooks/useTopBar';
 
 const TopBar = () => {
   const { userInfo } = useUserStore();
-  const { showPopup, getChartList, handlePopup, closePopup } = useTopBar();
+  const { showPopup, getChartList, getReservationTodayList, handlePopup, closePopup } = useTopBar();
   const navigate = useNavigate();
   const vertical = verticalLine('4vh');
   
-  const updateChartList = () => {
+  const updateChartList = () => { // 병원통계 클릭시 차트 리스트를 새로 업데이트
     getChartList();
     navigate('/StatisticsPage')
+  }
+
+  const updateReservationTodayList = () => {  // 병원관리 시스템 클릭시 금일 예약리스트를 새로 업데이트
+    getReservationTodayList();
+    navigate('/Dashboard')
   }
 
   return (
     <div style={{ background: 'linear-gradient(to bottom, rgb(160, 210, 255), #ffffff)', height: '18vh', width: '100%'}}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left', padding: '2vh 2vw' }}>
-        <h1 onClick={() => navigate('/Dashboard')} style={{ fontSize: '1.8rem', cursor: 'pointer' }}>병원관리 시스템</h1>
+        <h1 onClick={() => updateReservationTodayList()} style={{ fontSize: '1.8rem', cursor: 'pointer' }}>병원관리 시스템</h1>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', flexGrow: 1, fontSize: '1.5rem' }}>
           <div style={vertical}></div>
           <p onClick={() => navigate('/ReservationPage')} style={{ cursor: 'pointer' }}>예약관리</p>
