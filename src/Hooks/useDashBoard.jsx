@@ -4,7 +4,7 @@ import { reservationStore } from '../store/store';
 import { apiDeleteReservationToday } from '../Services/apiDeleteReservationToday';
 
 const useDashBoard = () => {
-    const { reservationTodayList, setReservationTodayList, registrations, setRegistrations, setReservationList } = reservationStore(); // Zustand를 이용한 상태 관리
+    const { reservationTodayList, setReservationTodayList, registrations, setRegistrations } = reservationStore(); // Zustand를 이용한 상태 관리
 
     const [selectedReservation, setSelectedReservation] = useState(null); // 선택된 예약자
     const [selectedRegistration, setSelectedRegistration] = useState(null); // 선택된 접수자
@@ -23,7 +23,6 @@ const useDashBoard = () => {
                 const response = await apiDeleteReservationToday(selectedReservation.reservationNum);
                 if (response.status === 200){
                     console.log(response.status);
-                    setReservationList(response.reservations);
                     setReservationTodayList(response.reservationsToday);
                     console.log('접수 성공');
                 }

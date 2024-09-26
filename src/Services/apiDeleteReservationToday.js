@@ -5,14 +5,13 @@ import axios from "axios";
 export const apiDeleteReservationToday = async (reservationNum) => {
     console.log(reservationNum);
     try { 
-        const response = await axios.post("http://localhost:8080/api/cancelReservation", {reservationNum}, {
+        const response = await axios.post("http://localhost:8080/api/deleteReservationToday", {reservationNum}, {
             headers: {
                 'Content-Type' : 'application/json'
             }
         });
 
         return {
-            reservations: response.data.reservations,
             reservationsToday: response.data.reservationsToday,
             status: response.status
         };
